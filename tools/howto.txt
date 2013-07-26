@@ -1,0 +1,14 @@
+###############################################################################
+#
+#   Convert single RES file
+#
+
+perl tools/res2blue.pl specification/projects.res
+
+
+###############################################################################
+#
+#   Convert all RES files
+#
+
+for r in `find specification -name *.res`; do perl tools/res2blue.pl $r; done
