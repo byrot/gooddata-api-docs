@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: maqlvalidator
@@ -7,14 +7,24 @@
 ###############################################################################
 # Group: Description
 #
-#       Parse and valiadte MAQL.
+#   __Resource to parse and validate MAQL queries.__
+#
+#   MAQL is GoodData multidimensional analytical query language.
+#   It allows you to write metrics which can be used in reports.
+#
+#   __Related resources:__
+#
+#    - [MAQL Basics](http://developer.gooddata.com/article/metrics-and-maql)
+#    - [MAQL Reference Guide](http://developer.gooddata.com/article/advanced-maql-reference-guide)
+#    - /gdc/md/<project>/ldm/manage2
+#    - /gdc/md/<project>/dml/manage
+#    - /gdc/md/<project>/query/metrics
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/maqlvalidator
-#       /md/(\w+)/maqlvalidator
+#   header: /gdc/md/<project>/maqlvalidator
 #
 #        POST - <MaqlDef> -> <ValidationResult>
 #  
@@ -88,6 +98,68 @@
 #   (end)
 #
 #
+
+###############################################################################
+# Group: Mock-up
+#
+#   header: Create a metric
+#   (start example)
+#	POST /gdc/md/<project>/maqlvalidator
+#	BODY:
+#	---
+#	expression: CREATE METRIC {m.amount.sum} AS SELECT SUM({f.amount});
+#	Response
+#	HEAD: 200 Ok
+#	BODY:
+#	--- 
+#	maqlOK: 
+#	  expression: CREATE METRIC {m.amount.sum} AS SELECT SUM({f.amount});
+#	  trees: 
+#	    - 
+#	      content: 
+#	        - 
+#	          content: 
+#	            - 
+#	              position: 
+#	                column: 15
+#	                line: 1
+#	              type: identifier
+#	              value: m.amount.sum
+#	            - 
+#	              content: 
+#	                - 
+#	                  content: 
+#	                    - 
+#	                      content: 
+#	                        - 
+#	                          position: 
+#	                            column: 44
+#	                            line: 1
+#	                          type: identifier
+#	                          value: f.amount
+#	                      position: 
+#	                        column: 40
+#	                        line: 1
+#	                      type: function
+#	                      value: SUM
+#	                  position: 
+#	                    column: 40
+#	                    line: 1
+#	                  type: expression
+#	              position: 
+#	                column: 33
+#	                line: 1
+#	              type: metric
+#	          position: 
+#	            column: 8
+#	            line: 1
+#	          type: metric def
+#	      position: 
+#	        column: 1
+#	        line: 1
+#	      type: create
+#   (end)
+
 ################################################################################
 # Group: Info
 #
