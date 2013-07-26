@@ -1,0 +1,51 @@
+Title: Flags Semantics
+
+Section: Entry Point
+
+This flag remarks that current resource is an entry point. A REST API entry point
+is a special resource whose URI won't change without prior notice. The clients
+should not store URIs to ordinary resources as a part of their configuration,
+they should only store the few designated entry point URIs and use REST and the
+principle of hypertext navigation to navigate through the API and discover other
+related resources. To prevent compatibility issues with future releases, URIs
+should be used as opaque identifiers - i.e. parsing and composing URIs
+programmatically (with the exception of entry points) is strongly discouraged.
+
+Section: Scope
+
+Allowed Values: global | project-level
+
+Defines, whether a given resource serves content related to a particular project
+(a project corresponds to a data mart in a more traditional BI terminology) or
+whether the content served by the resource is global, and not specific to a
+particular project. The reason for this distinction is that in GoodData
+Platform, the concept of a project addresses both the security boundary and the
+deployment granularity: a project is a walled garden from the security
+standpoint and users need to be specifically invited to a given project by the
+administrator. At the same time, the GoodData Platform allows each project, even
+if created and owned by the same user, to be deployed across different nodes of
+the cloud running potentially different versions of the application code.
+
+Section: Access Control
+
+Allowed Values: unrestricted | authentication-required
+
+Whether the given resource requires the client to provide a valid authentication
+token with each request, or whether the resource is publicly available without
+authentication.
+
+Section: Visibility
+
+Allowed Values: public | internal
+
+Whether the given resource is meant for public (3rd party consumption) or
+whether it is GoodData internal. Internal resources may change without prior
+notice between releases.
+
+Section: State
+
+Allowed Values: draft | supported since {release} | deprecated since {release}
+
+- draft: a new resource under development, should not be used for production purposes, API may change at any time
+- supported since {release}: introduced into production environment and actively supported, example: supported since stable-19
+- deprecated since {release}: deprecated and the usage is strongly discouraged, deprecated resources can be dropped from API at any time (any upcoming release), example: deprecated since stable-18
