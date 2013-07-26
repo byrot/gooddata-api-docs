@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: projects
@@ -7,20 +7,37 @@
 ###############################################################################
 # Group: Description
 #
-#   Project users management.
+#   __Resource for creating new projects.__
 #
+#   _Project_ is one of the key entities inside GoodData.  It is a stand-alone
+#   solution for your custom BI application, containing analytical database
+#   (data mart), users, metrics, reports and dashboards.
 #
+#   A project can be created empty, or from a template. GoodData templates
+#   allow to create many projects with the same data model and dashboards.
+#
+#   When creating a new project you may set these properties:
+#
+#    - title (string) : Project name
+#    - summary (string) : Brief project description
+#    - template (uri) : Location of project template
+#    - token (string) : Security key, customer identification
+#    - driver (string) : Database engine to be used for data mart
+#
+#   __Related resources:__
+#
+#   - /gdc/projects/<project>
+#
+
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects
+#   header: /gdc/projects
 #           Create Project
 #           
 #    POST - <Project> -> <Uri> (201 Created)
-#    GET  - * -> (200 Ok) ListOfProjects %???
-#    % note: GET method is not currently supported. It should return list of all projects in system. 
-#    % An question to be answered: Who will have permitions to call this resource?   
+#    GET  - * -> (200 Ok)
 #  
 
 ###############################################################################
@@ -28,21 +45,30 @@
 #
 #
 
-
-
 ###############################################################################
 # Group: Mock-up
 #
-#   header: create a new project
+#   header: Create a new project
 #   (start example)
-#	POST http://localhost/gdc/projects
-#	BODY: {"project": {"meta": {"title": "NewProject", "summary": "A new project" }, "content": {"guidedNavigation": 1, "driver": "Pg"} } }
+#	POST https://secure.gooddata.com/gdc/projects
+#	BODY:
+#	---
+#	project:
+#	  meta:
+#	    title: Sales
+#	    summary: My GoodSales analytics project
+#	    projectTemplate: /projectTemplates/GoodSalesDemo/3/
+#	  content:
+#	    guidedNavigation: 1
+#	    driver: Pg
+#	    authorizationToken: GDCEXAMPLE
 #	Response
 #	HEAD: 201 Created
-#	BODY: {"uri":"/gdc/projects/FoodMartDemo"}
+#	BODY:
+#	---
+#	uri: /gdc/projects/NewProjectId
 #   (end)
 #
-
 
 ################################################################################
 # Group: Info

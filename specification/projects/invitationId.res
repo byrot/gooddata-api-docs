@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: invitationId
@@ -7,7 +7,7 @@
 ###############################################################################
 # Group: Description
 #
-#   Project users management.
+#   __Resource to manage pending user invitations in the project.__
 #
 #
 
@@ -16,13 +16,14 @@
 #
 #   header: /projects/<project>/invitations/<invitation>
 #           GET - * -> (200 Ok) Invitation
-#           
+#
 #           POST - <Invitation>
 #           - (200 Ok)
 #           - (404 Not found) % Project or invitation not found
 #
 #           DELETE - * -> (204 No Content)
 #           - (404 Not found) % Project or invitation not found
+#
 
 ###############################################################################
 # Group: Security Consideration
@@ -30,32 +31,33 @@
 #   header: /projects/<project>/invitations/<invitation>
 #     POST - invitation ownership
 #     DELETE - canInviteUserToProject
+#
 
 ###############################################################################
 # Group: Mock-up
 #
 #   header: Get invitation by id
 #   (start example)
-#	GET http://localhost/gdc/projects/FoodMartDemo/invitations/15
+#	GET https://secure.gooddata.com/gdc/projects/ProjectId/invitations/15
 #	Response
 #	HEAD: 200 OK
-#	BODY: 
-#	--- 
-#	invitation: 
-#	  content: 
-#	    email: jiri.zaloudek@gooddata.com
-#	    firstname: Jiri
-#	    lastname: Zaloudek
+#	BODY:
+#	---
+#	invitation:
+#	  content:
+#	    email: charlie@example.com
+#	    firstname: Charlie
+#	    lastname: Chaplin
 #	    phonenumber: ~
 #	    status: WAITING
-#	  links: 
-#	    project: /gdc/projects/FoodMartDemo
-#	    self: /gdc/projects/FoodMartDemo/invitations/20
-#	  meta: 
-#	    author: 
+#	  links:
+#	    project: /gdc/projects/ProjectId
+#	    self: /gdc/projects/ProjectId/invitations/20
+#	  meta:
+#	    author:
 #	      name: John Doe
 #	      uri: /gdc/account/profile/1
-#	    contributor: 
+#	    contributor:
 #	      name: ~
 #	      uri: /gdc/account/profile
 #	    created: 2008-09-09 12:49:02
@@ -66,15 +68,19 @@
 #	
 #   header: Delete invitation (set as CANCELED)
 #   (start example)
-#	DELETE http://localhost/gdc/projects/FoodMartDemo/invitations/3
+#	DELETE https://secure.gooddata.com/gdc/projects/ProjectId/invitations/3
 #	Response
 #	HEAD: 204 No Content
 #   (end)
 #	
-#   header: ACCEPT/REFUSE invitation
+#   header: Update invitation
 #   (start example)
-#	POST http://localhost/gdc/projects/FoodMartDemo/invitations/3
-#	BODY: {"invitation":{"content":{"status":"ACCEPTED"}}}
+#	POST https://secure.gooddata.com/gdc/projects/ProjectId/invitations/3
+#	BODY:
+#	---
+#	invitation:
+#	  content:
+#	    status: CANCELED
 #	Response
 #	HEAD: 200 OK
 #   (end)

@@ -6,14 +6,21 @@
 ###############################################################################
 # Group: Description
 #
-#   Project roles management.
+#   __Project security roles management.__
 #
+#   It is possible to define security roles in the project. You may add various
+#   rights to the role, and then assign a role to users.
+#
+#   __Related resources:__
+#
+#   - /gdc/projects
+#   - /gdc/projects/<project>/users
 #
 
 ###############################################################################
 # Group: Resource(s)
-# 
-#   header: /projects/<project>/roles
+#
+#   header: /gdc/projects/<project>/roles
 #
 #           GET -
 #              - (200 Ok) <ProjectRoles> | <About>
@@ -23,7 +30,7 @@
 #              - (200 Ok) ANY
 #              - (404 Not found)
 #
-#   header: /projects/<project>/roles/<role>/users
+#   header: /gdc/projects/<project>/roles/<role>/users
 #
 #        GET -
 #           - (200 OK) <AssociatedUsers>
@@ -34,10 +41,10 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /projects/<project>/roles
+#   header: /gdc/projects/<project>/roles
 #     POST - canCreateRole
 #
-#   header: /projects/<project>/roles/<role>/users
+#   header: /gdc/projects/<project>/roles/<role>/users
 #     POST - canAssignUserWithRole
 
 ###############################################################################
@@ -98,22 +105,34 @@
 #
 #   header: Get roles list in probject
 #   (start example)
-#	GET http://localhost/gdc/projects/FoodMartDemo/roles
+#	GET https://secure.gooddata.com/gdc/projects/ProjectId/roles
 #	Response
 #	HEAD: 200 OK
-#	BODY: 
-#	--- 
+#	BODY:
+#	---
+#	projectRoles:
+#	  links:
+#	    project: /gdc/projects/ProjectId
+#	  roles:
+#	    - /gdc/projects/ProjectId/roles/2
+#	    - /gdc/projects/ProjectId/roles/7
 #   (end)
-#	
+#
 #   header: Establish role for project
 #   (start example)
-#	POST http://localhost/gdc/projects/FoodMartDemo/roles
-#	Request
-#	BODY: { }
+#	POST https://secure.gooddata.com/gdc/projects/ProjectId/roles
+#	BODY:
+#	---
+#	projectRole:
+#	  meta:
+#	    title: ETL File Manager
+#	  permissions:
+#	    canAccessWorkbench: 1
+#	    canManageETLFile: 1
 #	Response
 #	HEAD: 200 OK
 #   (end)
-#	
+#
 
 ################################################################################
 # Group: Info

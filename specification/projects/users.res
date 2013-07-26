@@ -6,14 +6,22 @@
 ###############################################################################
 # Group: Description
 #
-#   Project users management.
+#   __Project users management.__
 #
+#   This resource serves as user management for the project.
+#   You may list project users, add or remove them from the project.
+#
+#   __Related resources:__
+#
+#   - /gdc/projects/<project>/roles
+#   - /gdc/projects/<project>/invitations
+#   - /gdc/account
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/users
+#   header: /gdc/projects/<project>/users
 #
 #           GET
 #              - (200 Ok) <Users>
@@ -31,7 +39,7 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /projects/<project>/users?[offset=offset&limit=limit]
+#   header: /gdc/projects/<project>/users?[offset=offset&limit=limit]
 #     GET - canListUsersInProject
 #     POST - canSuspendUserFromProject, canAssignUserWithRole (for new users), only user who is domain owner may add new users (there users have to belong to the same domain
 
@@ -42,27 +50,27 @@
 #
 #   (start code)
 #   User = < user : {
-#      (meta: Meta)?,                 % content title, summary...
+#      (meta: Meta)?,				% content title, summary...
 #      content: {
-#    	status: 'ENABLED' | 'DISABLED',
-#    	(firstname: STRING[1+])?,
-#    	(lastname: STRING[1+])?,
-#    	(email: EMAIL)?,
-#	(login: STRING)?,
-#    	(phonenumber: STRING)?,
-#       (userRoles : [ URISTRING ])?,    % useRoles that will be assigned to updated or new user (previous roles are discarded - there is no merge!)
-#       (userGroups : [ URISTRING ])?
+#      status: 'ENABLED' | 'DISABLED',
+#        (firstname: STRING[1+])?,
+#        (lastname: STRING[1+])?,
+#        (email: EMAIL)?,
+#        (login: STRING)?,
+#        (phonenumber: STRING)?,
+#        (userRoles: [ URISTRING ])?,		% useRoles that will be assigned to updated or new user (previous roles are discarded - there is no merge!)
+#        (userGroups: [ URISTRING ])?
 #      },
 #      (links: {
-#        self: URISTRING,			    % /account/profile/$userId
+#        self: URISTRING,			% /account/profile/$userId
 #        %ifdef OUT_ONLY
-#            roles : URISTRING,             % /project/$project/users/$userId/roles
-#            groups : URISTRING,            % /project/$project/users/$userId/groups
-#            permissions : URISTRING,       % /project/$project/users/$userId/permissions
-#            (groupUser: URISTRING)?,       % /project/$project/groups/$groupId/users/$userId  if the user is listed from group, this link points to a relationship  resource
-#            projectRelUri : URISTRING, % /project/$project/users/$userId
+#            roles: URISTRING,			% /project/$project/users/$userId/roles
+#            groups: URISTRING,			% /project/$project/users/$userId/groups
+#            permissions: URISTRING,		% /project/$project/users/$userId/permissions
+#            (groupUser: URISTRING)?,		% /project/$project/groups/$groupId/users/$userId; if the user is listed from group, this link points to relationship resource
+#            projectRelUri: URISTRING,		% /project/$project/users/$userId
 #        %endif
-#        (invitations: URISTRING)?,   	% /account/profile/$userId/invitations
+#        (invitations: URISTRING)?,		% /account/profile/$userId/invitations
 #        (projects: URISTRING)?			% /account/profile/$userId/projects
 #      })?
 #   }>
@@ -118,7 +126,7 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/users/<user>
+#   header: /gdc/projects/<project>/users/<user>
 #
 #           GET
 #              - (200 Ok) <User>
@@ -131,14 +139,14 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /projects/<project>/users/<user>
+#   header: /gdc/projects/<project>/users/<user>
 #     GET - canListUsersInProject
 #     DELETE - canSuspendUserFromProject
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/users/<user>/permissions
+#   header: /gdc/projects/<project>/users/<user>/permissions
 #
 #           GET
 #              - (200 Ok) <AssociatedPermissions>
@@ -147,7 +155,7 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/users/<user>/roles
+#   header: /gdc/projects/<project>/users/<user>/roles
 #
 #           GET
 #              - (200 Ok) <AssociatedRoles>
@@ -157,7 +165,7 @@
 #
 #   header: Get users in probject
 #   (start example)
-#	GET http://localhost/gdc/projects/FoodMartDemo/users
+#	GET https://secure.gooddata.com/gdc/projects/ProjectId/users
 #	Response
 #	HEAD: 200 OK
 #	BODY:
@@ -171,7 +179,7 @@
 #	        lastname: Doe
 #	        phonenumber: 0
 #	        status: ENABLED
-#	        userRoles : [ /gdc/projects/FoodMartDemo/roles/1 ]
+#	        userRoles : [ /gdc/projects/ProjectId/roles/1 ]
 #	      links:
 #	        invitations: /gdc/account/profile/1/invitations
 #	        projects: /gdc/account/profile/1/users
@@ -210,20 +218,20 @@
 #	        updated: 0000-00-00 00:00:00
 #   (end)
 #
-#   header: Update project by user structure
+#   header: Add a user into the project
 #   (start example)
-#	POST http://localhost/gdc/projects/FoodMartDemo/users
+#	POST https://secure.gooddata.com/gdc/projects/ProjectId/users
 #	Request
-#	BODY: { "user" : { "content": { "status": "ENABLED"}, "links":{"self":"/gdc/account/profile/2" } } }
+#	BODY: {"user": {"content": {"status": "ENABLED"}, "links": {"self":"/gdc/account/profile/2"} } }
 #	Response
 #	HEAD: 200 OK
 #   (end)
 #
 #   header: Update project by users structure
 #   (start example)
-#	POST http://localhost/gdc/projects/FoodMartDemo/users
+#	POST https://secure.gooddata.com/gdc/projects/ProjectId/users
 #	Request
-#	BODY: { "users" : [ { "user" : { "content": { "status": "ENABLED"}, "links":{"self":"/gdc/account/profile/1" } } }, { "user" : { "content": { "status": "ENABLED"}, "links":{"self":"/gdc/account/profile/2" } } } ] }
+#	BODY: {"users": [ {"user": {"content": {"status": "ENABLED"}, "links": {"self": "/gdc/account/profile/1"} } }, {"user": {"content": {"status": "ENABLED"}, "links": {"self": "/gdc/account/profile/2" } } } ] }
 #	Response
 #	HEAD: 200 OK
 #   (end)
