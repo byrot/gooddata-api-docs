@@ -1,21 +1,23 @@
 ##############################################################################
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ##############################################################################
 #
 # Section: PublicArtifacts
 #
 ###############################################################################
-#
 # Group: Description
-# PublishedArtifact resource is used for public exposing of project's artifacts (the 
-# project itself, dashboards, reports). An artifact is exposed by a public access code
-# that can be used in the login structure instead of username and password.
+#
+#   PublicArtifacts resource publishes project's artifacts (the project itself,
+#   dashboards, reports). An artifact is exposed by a public access code
+#   that can be used in the login structure instead of username and password.
 # 
-# This resource can be used for public access code creation, renewal and read.
+#   It is also possible to create, renew, and read the public access codes at
+#   this resource.
 #
 ###############################################################################
 # Group: Resource(s)
-#   header: /projects/<projectId>/publicartifacts/
+#
+#   header: /gdc/projects/<project>/publicartifacts
 #
 #           POST PublicProjectArtifact           % used for PublicProjectArtifact creation (canManagePublicAccessCode required)
 #              - (200 Ok) PublicProjectArtifact
@@ -23,7 +25,7 @@
 #           GET -
 #              - (200 Ok) PublicProjectArtifacts % collection of PublicProjectArtifact (canSeePublicAccessCode required)
 #
-#  header: /projects/<projectId>/publicartifacts/<secret>
+#  header: /gdc/projects/<project>/publicartifacts/<secret>
 #
 #           GET -
 #              - (200 Ok) PublicProjectArtifact % used for PublicProjectArtifact read (canSeePublicAccessCode required)
@@ -65,13 +67,11 @@
 #
 #   header: Create a PublicAccessCode.
 #   (start example)
-#    POST
-#    https://secure.gooddata.com/gdc/projects/FoodMartDemo/publicartifacts
-#    Request
+#    POST https://secure.gooddata.com/gdc/projects/ProjectId/publicartifacts
 #    BODY: {"publicProjectArtifact":{"artifact":"project"}} 
 #    Response
 #    HEAD: 200
-#    BODY: {"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":{"self":"/gdc/projects/FoodMartDemo/publicartifacts/XYZ","publicArtifact":"/gdc/projects/FoodMartDemo"}}}
+#    BODY: {"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":{"self":"/gdc/projects/ProjectId/publicartifacts/XYZ","publicArtifact":"/gdc/projects/ProjectId"}}}
 #   (end)
 #
 ###############################################################################
@@ -79,23 +79,24 @@
 #
 #   header: PublicAccessCode renewal (3 steps)
 #   (start example)
-#    GET
-#    https://secure.gooddata.com/gdc/projects/FoodMartDemo/publicartifacts
+#    GET https://secure.gooddata.com/gdc/projects/ProjectId/publicartifacts
 #    Response
 #    HEAD: 200 
-#    BODY:{"publicProjectArtifacts":{"items":[{"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":"self":"/gdc/projects/FoodMartDemo/publicartifacts/XYZ","publicArtifact":"/gdc/projects/FoodMartDemo"}}}]}} 
+#    BODY: {"publicProjectArtifacts":{"items":[{"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":{"self":"/gdc/projects/ProjectId/publicartifacts/XYZ","publicArtifact":"/gdc/projects/ProjectId"}}}]}} 
+#   (end)
 #
-#    DELETE
-#    https://secure.gooddata.com/gdc/projects/FoodMartDemo/publicartifacts/XYZ
-#    Response 204
+#   (start example)
+#    DELETE https://secure.gooddata.com/gdc/projects/ProjectId/publicartifacts/XYZ
+#    Response
+#    HEAD: 204
+#   (end)
 #
-#    POST
-#    https://secure.gooddata.com/gdc/projects/FoodMartDemo/publicartifacts
-#    Request
+#   (start example)
+#    POST https://secure.gooddata.com/gdc/projects/ProjectId/publicartifacts
 #    BODY: {"publicProjectArtifact":{"artifact":"project"}} 
 #    Response
 #    HEAD: 200
-#    BODY: {"publicProjectArtifact":{"secret":"BFL","artifact":"project","links":{"self":"/gdc/projects/FoodMartDemo/publicartifacts/BFL","publicArtifact":"/gdc/projects/FoodMartDemo"}}}
+#    BODY: {"publicProjectArtifact":{"secret":"BFL","artifact":"project","links":{"self":"/gdc/projects/ProjectId/publicartifacts/BFL","publicArtifact":"/gdc/projects/ProjectId"}}}
 #  (end)
 #
 ###############################################################################
@@ -103,10 +104,16 @@
 #
 #   header: PublicAccessCode read
 #   (start example)
-#    GET
-#    https://secure.gooddata.com/gdc/projects/FoodMartDemo/publicartifacts/XYZ 
+#    GET https://secure.gooddata.com/gdc/projects/ProjectId/publicartifacts/XYZ 
 #    Response
 #    HEAD: 200 
-#    BODY: {"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":{"self":"/gdc/projects/FoodMartDemo/publicartifacts/XYZ","publicArtifact":"/gdc/projects/FoodMartDemo"}}}
-#
+#    BODY: {"publicProjectArtifact":{"secret":"XYZ","artifact":"project","links":{"self":"/gdc/projects/ProjectId/publicartifacts/XYZ","publicArtifact":"/gdc/projects/ProjectId"}}}
 #   (end)  
+#
+################################################################################
+# Group: Info
+#
+# About: Owner(s)
+#
+#       Lukas Krecan
+#

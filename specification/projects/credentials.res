@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: credentials
@@ -6,7 +6,8 @@
 ###############################################################################
 # Group: Description
 #
-#   Credentials related to the project. It can store Salesforce, AWS and other credentials to external systems.
+#   Manage credentials to enable connecting GoodData to external systems,
+#   for example AWS, SalesForce and others.
 #
 ###############################################################################
 # Group: Resource(s)
@@ -49,7 +50,7 @@
 #
 #   header: Set credential
 #   (start example)
-#	POST http://localhost/gdc/projects/FoodMartDemo/credentials/sfdc
+#	POST http://localhost/gdc/projects/ProjectId/credentials/sfdc
 #	BODY: {"credential":{"key":"name@example.org", "secret":"passwordAndSfdcSecretKey"}}
 #	Response
 #	HEAD: 204 No Content
