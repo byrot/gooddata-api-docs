@@ -3,7 +3,7 @@ use warnings;
 use feature 'switch';
 
 die 'Invalid file name given. Use with parameter "file.res"'
-	unless $ARGV[0] =~ m/^[\.\/\w]+\.res$/;
+	unless $ARGV[0] =~ m/^[\.\/\w\-_]+\.res$/;
 
 my $r = new Resource( $ARGV[0] );
 $r->read();
