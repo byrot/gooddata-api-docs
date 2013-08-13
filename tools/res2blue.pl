@@ -187,7 +187,7 @@ sub print_body {
 	# Guess content type
 	if ( $body =~ m/^\s*---\s*\n/ ) {
 		print "$dir Content-type: application/yaml\n";
-	} elsif ( $body =~ m/^\s*\{.*/ ) {
+	} elsif ( $body =~ m/^\s*[\[\{].*/ ) {
 		print "$dir Content-type: application/json\n";
 		my $json = new JSON;
 		$body = $json->pretty->encode( $json->decode( $body ) );
