@@ -1,26 +1,46 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
-#   Section: availablemetrics
+#   Section: availablefacts
 #
 
 ###############################################################################
 # Group: Description
 #
-# Provides a list of available facts for a report. Accepts reportDefinition, Metrics, Facts,
-# Attributes. e.x. [ reportDefintion, Metrics ]
+#   Resource providing list of facts usable within a specified report. Due to
+#   the report context it is usualy not possible to use any fact, since it
+#   is not drillable into the attributes of the report.
+#
+#   It accepts reportDefinition, Metrics, Facts, Attributes or their
+#   combinations.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/availablemetrics
+#   - /gdc/md/<project>/drillcrosspaths
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/availablemetrics
-#           /md/(\w+)/availablemetrics
+#   header: /gdc/md/<project>/availablefacts
+#           /gdc/md/(\w+)/availablefacts
 #  
 #          POST - [ URISTRING ] -> <Entries>
 #
-#   header: /md/<project>/availablemetrics/<id>
-#           /md/(\w+)/availablemetrics/(\w+)
+#   header: /gdc/md/<project>/availablefacts/<id>
+#           /gdc/md/(\w+)/availablefacts/(\w+)
 #  
 #           GET * -> <Entries>
+#
+###############################################################################
+# Group: Mock-up
+#
+#   (start example)
+#     POST /gdc/md/<project>/availablefacts
+#     BODY: ["/gdc/md/<project>/obj/1234","/gdc/md/<project>/obj/2345"]
+#     Response
+#     HEAD: 200
+#     BODY: {"entries":[{"link":"/gdc/md/<project>/obj/95","title":"Amount"},{"link":"/gdc/md/<project>/obj/98","title":"Probability"}]}
+#   (end)
 #

@@ -1,24 +1,29 @@
-# Copyright (C) 2007-2011, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: etltask
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource returning task status of ETL exec for a given queue id.
+#   __Resource to check ETL task staus.__
+#
+#   When loading your data into GoodData platform, you start ETL task.
+#   This resource shows status of your ETL tasks.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl
+#   - /gdc/md/<project>/etl/pull
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
-# Resource: templates
+# Group: Resource(s)
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/etltask/<id>
+#   header: /gdc/md/<project>/etltask/<id>
 #
 #	parameters:
 #		none
@@ -56,16 +61,17 @@
 #
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
 #   (start example)
-# GET https://localhost/gdc/md/Project1/etltask/aam51dMVceSf
-#
-# ---
-# taskState:
-#   msg: 55 tables already exist in DWH, dwh_dm_az1uovci5mafvgk, dwh_dm_az1vovci5mafvgk, dwh_dm_az1wovci5mafvgk, dwh_dm_az1xovci5mafvgk, dwh_dm_az1yovci5mafvgk, ...  at /opt/common/lib/Executor/../Util/MDLoad.pm line 886.
-#   status: ERROR
+#	GET /gdc/md/<project>/etltask/aam51dMVceSf
+#	Response
+#	HEAD: 200
+#	BODY:
+#	---
+#	taskState:
+#	   msg: 55 tables already exist in DWH, dwh_dm_az1uovci5mafvgk, dwh_dm_az1vovci5mafvgk, dwh_dm_az1wovci5mafvgk, dwh_dm_az1xovci5mafvgk, dwh_dm_az1yovci5mafvgk, ...  at /opt/common/lib/Executor/../Util/MDLoad.pm line 886.
+#	   status: ERROR
 #     (end)
 #
 
