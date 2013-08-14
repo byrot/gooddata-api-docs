@@ -6,26 +6,20 @@
 # Project maintenance resources.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#   Project maintenance resources. Project exporting and importing. Backup and
-#   migration not implemented yet.
+#   __Navigation resource to project maintenance resources.__
+#
+#   It is possible to export and import project metadata, users, or even
+#   project cloning for example.
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
-# Resource: maintenance
+# Group: Resource(s)
 #
-#   Navigation resource to Maintenance resources.
+#   header: /gdc/md/<project>/maintenance
 #
-# Topic: Synopsis
-#
-#> /md/<project>/maintenance
-#
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
 
@@ -39,12 +33,12 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/maintenance/cleanup
+#   header: /gdc/md/<project>/maintenance/cleanup
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
-#   POST <CleanUpProject>
+#   POST - <CleanUpProject>
 #     - (200 Ok) URI
 #     - (204 Ok) - no data in the project, nothing to clean
 #     - (400 Bad request) ErrorStruct
@@ -74,12 +68,12 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/maintenance/export
+#   header: /gdc/md/<project>/maintenance/export
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
-#   POST <ExportProject>
+#   POST - <ExportProject>
 #     - (200 Ok) <ExportArtifact>
 #     - (400 Bad request) ErrorStruct
 #
@@ -108,12 +102,12 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/maintenance/import
+#   header: /gdc/md/<project>/maintenance/import
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
-#   POST <ImportProject>
+#   POST - <ImportProject>
 #     - URI % etl-task uri
 #     - (400 Bad request) ErrorStruct
 #
@@ -143,12 +137,12 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/maintenance/partialmdexport
+#   header: /gdc/md/<project>/maintenance/partialmdexport
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
-#   POST <PartialMDExport>
+#   POST - <PartialMDExport>
 #     - (200 Ok) <PartialMDArtifact>
 #     - (400 Bad request) ErrorStruct
 #
@@ -178,12 +172,12 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/maintenance/partialmdimport
+#  header: /gdc/md/<project>/maintenance/partialmdimport
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
-#   POST <PartialMDImport>
+#   POST - <PartialMDImport>
 #     - (200 Ok) URI
 #     - (400 Bad request) ErrorStruct
 #
@@ -208,19 +202,19 @@
 # Section: Security Consideration
 ###############################################################################
 #
-#   header: /md/<project>/maintenance/cleanup
+#   header: /gdc/md/<project>/maintenance/cleanup
 #     POST - canMaintainProject
 #
-#   header: /md/<project>/maintenance/export
+#   header: /gdc/md/<project>/maintenance/export
 #     POST - canMaintainProject
 #
-#   header: /md/<project>/maintenance/import
+#   header: /gdc/md/<project>/maintenance/import
 #     POST - canMaintainProject
 #
-#   header: /md/<project>/maintenance/partialmdexport
+#   header: /gdc/md/<project>/maintenance/partialmdexport
 #     POST - canMaintainProject
 #
-#   header: /md/<project>/maintenance/partialmdimport
+#   header: /gdc/md/<project>/maintenance/partialmdimport
 #     POST - canMaintainProject
 #
 
@@ -366,10 +360,15 @@
 
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#>    ExportProject = < exportProject: '{ "exportUsers": false, "exportData": true, "authorizedUsers": [ "foo@gooddata.com", "bar@gexample.com" ] }' >
+#   (start example)
+#	POST /gdc/md/<project>/maintenance/export
+#	BODY: {"exportProject":{"exportUsers":"0","exportData":"1","authorizedUsers":["foo@gooddata.com","bar@example.com"]}}
+#	Response
+#	HEAD: 200
+#	BODY: {"exportArtifact":{"status":{"uri":"/gdc/md/<project>/etltask/8ae31e8a6e61a86f4693937e045d83c8"},"token":"0TEBfnwVuU040tP"}}
+#   (end)
 #
 
 ################################################################################

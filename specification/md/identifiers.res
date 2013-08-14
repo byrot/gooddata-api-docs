@@ -5,35 +5,33 @@
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource retrieving metadata object identifiers.
+#   __Resource retrieving metadata object identifiers.__
+#
+#   Object identifier is unique textual ID of metadata object. It can be
+#   defined in MAQL for example.
+#
+#    __Related resources:__
+#
+#    - /gdc/md/<project>/obj
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
-# Resource:
+# Group: Resource(s)
 #
-#	Instance-Identifiers
+#   header: /gdc/md/<project>/identifiers
 #
-# Topic: Synopsis
-#
-#>	 gdc/md/< project >/identifiers
-#
-#   (start example)
-#	GET *
+#	GET - *
 #		-> About
 #
-#	POST UriToIdentifier
+#	POST - UriToIdentifier
 #		-> Identifiers
 #		-> (400 Bad request) ErrorStruct
 #
-#	POST IdentifierToUri
+#	POST - IdentifierToUri
 #		-> Identifiers
 #		-> (400 Bad request) ErrorStruct
-#    (end)
 #
 # Topic: Flags
 #
@@ -57,18 +55,11 @@
 #
 #	--
 #
-# Topic: Example
-#
-#	GET, receive About.
-#	POST  { identifierToUri : [ 'attr.1', 'attr.2' ] } },
-#	receive pairs URI nad Identifier
 #
 
 ###############################################################################
-# Section: Data Structures
-###############################################################################
-
-###############################################################################
+# Group: Data Structures
+#
 # Structure: Identifiers
 #
 #	List of object identifiers.
@@ -103,11 +94,24 @@
 #   (end)
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#	{There should be shown and commented example workflow on resources
-#	documented in this document}
+#   (start example)
+#	POST /gdc/md/<project>/identifiers
+#	BODY: {"identifierToUri":["attr.opportunity","attr.account"]}
+#	Response
+#	HEAD: 200
+#	BODY: {"identifiers":[{"identifier":"attr.opportunity","uri":"/gdc/md/<project>/obj/750"},{"identifier":"attr.account","uri":"/gdc/md/<project>/obj/421"}]}
+#   (end)
+#
+#   (start example)
+#	POST /gdc/md/<project>/identifiers
+#	BODY: {"uriToIdentifier":["/gdc/md/<project>/obj/750"]}
+#	Response
+#	HEAD: 200
+#	BODY: {"identifiers":[{"identifier":"attr.opportunity","uri":"/gdc/md/<project>/obj/750"}]}
+#   (end)
+#
 
 ################################################################################
 # Section: Info

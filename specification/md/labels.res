@@ -3,37 +3,32 @@
 #
 #   Section: labels
 #
-#   Translating element labels to uris
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#  Resource and structures provided and requested on resource for translating 
-#  element labels or element label patters (for provided label/attribute 
-#  display form) to element labels uris.
+#  __Resource to translate textual labels of attribute elements to their URI.__
+#  
+#  Every attribute has at least one label which is textual content of the
+#  attrubute. To use the elements (attribute values) in MAQL you need the URI.
+#
+#  __Related resources:__
+#
+#  - /gdc/md/<project>/obj/<id>/validElements
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
-# Resource
+# Group: Resource(s)
 #
-#   Labels.
+#   header: /gdc/md/<project>/labels
 #
-# Topic: Synopsis
+#      GET - *
+#        -> About
+#   
+#      POST - ElementLabelToUri
+#        -> ElementLabelUri
+#        -> (400 Bad request) ErrorStruct
 #
-#> /md/<project>/labels
-#
-#   (start example)
-#   GET *
-#     -> About
-#
-#   POST ElementLabelToUri
-#     -> ElementLabelUri
-#     -> (400 Bad request) ErrorStruct
-#
-#   (end)
 #
 # Topic: Flags
 #
@@ -45,10 +40,9 @@
 # state - supported since gs55
 #
 ###############################################################################
-# Section: Data Structures
-###############################################################################
-
-###############################################################################
+# Group: Data Structures
+#
+#
 # Structure: ElementLabelToUri
 #
 #   List of label uris and element labels to translate.
@@ -94,10 +88,18 @@
 #   (end)
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
 #   (start example)
+#	POST /gdc/md/<project>/labels
+#	BODY: {"elementLabelToUri":[{"labelUri":"/gdc/md/<project>/obj/456","mode":"EXACT","patterns":["Jun","Jul"]}]}
+#	Response
+#	HEAD: 200
+#	BODY: {"elementLabelUri":[{"mode":"EXACT","labelUri":"/gdc/md/<project>/obj/952","result":[{"pattern":"Jun","elementLabels":[{"elementLabel":"Jun","uri":"/gdc/md/<project>/obj/951/elements?id=6"}]},{"pattern":"Jul","elementLabels":[{"elementLabel":"Jul","uri":"/gdc/md/<project>/obj/951/elements?id=7"}]}]}]}
+#   (end)
+#
+#
+#
 #   ElementLabelToUri = < elementLabelToUri : [
 #     {
 #       labelUri : '/gdc/md/FoodMartDemo/obj/1200039',  % label_opp_close_month_of_year_short
