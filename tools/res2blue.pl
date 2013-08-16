@@ -33,7 +33,8 @@ sub read {
 	my ( $self ) = @_;
 
 	my $res;
-	my @methods;
+	my $method;
+	my %methodStatus;
 	my %example = ( status => 'null' );
 
 	open FILE, '<', $self->{filename} or die $!;
@@ -67,16 +68,20 @@ sub read {
 				when ( 'resources' ) {
 					my $header = $l =~ m/^#\s*header:\s*([^\s]+)\s*$/;
 
-					if ( ( $header or is_separator( $l ) ) and defined $res and @methods ) {
-						$self->{resources}->{$res} = [ @methods ];
+					if ( ( $header or is_separator( $l ) ) and defined $res and %methodStatus ) {
+						$self->{resources}->{$res} = { %methodStatus };
 						$res = undef;
-						@methods = ();
+						$method = '';
+						%methodStatus = ();
 					}
 
 					$res = $1 and next if $header;
 
-					push @methods, $1
+					$method = $1
 						if $l =~ m/^#\s*(POST|GET|PUT|DELETE).*$/;
+
+					push @{ $methodStatus{ $method } }, $1
+						if $l =~ m/^#\s*->?\s*\(?\s*([1-5][0-9]{2}).*$/;
 				}
 
 				when ( 'mockup' ) {
@@ -171,8 +176,9 @@ sub blueprint {
 
 	# Simple examples
 	for my $k ( sort keys %{ $r->{resources} } ) {
-		for my $m ( @{ $r->{resources}->{$k} } ) {
-			print "$m $k\n< 200\n\n\n"
+		for my $m ( keys %{ $r->{resources}->{$k} } ) {
+			# Print all possible return status codes
+			print "$m $k\n< " . join( "\n< ", sort @{ $r->{resources}->{$k}->{$m} } ) . "\n\n\n"
 				unless exists $exc{ $m . $k };
 			$exc{ $m . $k } = undef;
 		}
