@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2012, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: metadata services
@@ -6,24 +6,22 @@
 
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
 #  Set of resources that provides information about metadata and allows
 #  to set various parameters to modify how metadata server acts and works.
-
-
-###############################################################################
-# Section: Resources
-###############################################################################
+#
 
 ###############################################################################
+# Group: Resource(s)
+#
 # Resource: service
 #
 #	Access point for metadata related services and informations
 #
 # Topic: Synopsis
 #
-#> /gdc/md/< project >/service
+#	header: /gdc/md/<project>/service
 #
 #   (start example)
 #	GET *
@@ -57,7 +55,7 @@
 #
 # Topic: Synopsis
 #
-#> /gdc/md/< project >/service/engine
+#	header: /gdc/md/<project>/service/engine
 #
 #   (start example)
 #	GET *
@@ -90,7 +88,7 @@
 #
 # Topic: Security Consideration
 #
-#   header: /md/<project>/service/engine
+#   header: /gdc/md/<project>/service/engine
 #     POST - canMaintainProject
 #
 

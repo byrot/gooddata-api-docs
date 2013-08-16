@@ -6,28 +6,38 @@
 #	Search project metadata.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource capable to search title and descriptions of metadata for
-#	specified texts.
+#   __Resource for metadata object searching.__
+#
+#   It is possible to search titles and descriptions of metadata objects.
+#   The resource returns list of objects containing the search expression.
+#   The search expression must be at least 3 characters long.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/obj
+#   - /gdc/md/<project>/query
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
 # Resource: search
 #
 #	Search project metadata.
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/search
+#	header: /gdc/md/<project>/search
+#
+#	GET - *
+#		-> 200 Ok
 #
 # Topic: Parameters
-#>	/md/<project>/search[/STRING]
 #
-# (start example)
+#	header: /gdc/md/<project>/search/<searchstring>
+#
 #   GET *
 #     - (200 Ok) <About>
 #
@@ -38,7 +48,6 @@
 #   POST <Search>
 #     - (200 Ok) <Entriesh>
 #     - (400 Bad request) ErrorStruct
-# (end)
 #
 # Topic: Flags
 #

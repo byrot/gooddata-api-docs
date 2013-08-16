@@ -3,12 +3,13 @@
 #
 #   Section: templates
 #
-#	Resource returning dependency information about objects
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-# All resources in this documentation return persistent objects only.
+#  __Resource returning dependency information about objects.__
+#
+#  All resources in this documentation return persistent objects only.
 #
 
 ###############################################################################
@@ -22,14 +23,16 @@
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/templates
+#	header: /gdc/md/<project>/templates
 #
 #	parameters:
 #		none
 #
 #   (start example)
-#	POST URI -> URI
-#	GET  * -> TemplatesInfo
+#	POST - URI
+#		-> URI
+#	GET - *
+#		-> TemplatesInfo
 #	(end)
 #
 #   (start code)
@@ -70,18 +73,14 @@
 #
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
 #	(start example)
-#	POST https://localhost/gdc/md/Project2/templates
-#
-#	Body:
-#	{ 'uri' : '/projectTemplates/ZendeskAnalytics/2/index.json' }
-#
-#	Response:
-#	uri: /gdc/md/Project2/etltask/aar51dMVceSf
-#
+#	POST /gdc/md/<project>/templates
+#	BODY: { "uri" : "/projectTemplates/ZendeskAnalytics/2/index.json" }
+#	Response
+#	HEAD: 200
+#	BODY: { "uri" : "/gdc/md/Project2/etltask/aar51dMVceSf" }
 #	(end)
 
 ################################################################################

@@ -1,42 +1,55 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: Query Resources
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Those resources provide list of objects of certain type.
+#   __Resources to get list of metadata objects of certain type.__
+#
+#   Metadata objects are for example attributes, facts, metrics, reports,
+#   report definitions, dashboards, etc.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>
+#   - /gdc/md/<project>/obj
+#   - /gdc/md/<project>/reportdefinition
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: query
 #
 #	Returns list of obejcts of all types.
 #
 # Topic: Synopsis
 #
-#>	/gdc/md/<project>/query
+#	header: /gdc/md/<project>/query
 #
 #	parameters:
 #
 #		author=URISTRING - constrain resulting list to objects cerated by given
 #			user. Parameter is optional and works only in GET method.
 #
-#   (start example)
-#	GET *
-#		-> OK Query
+#	GET - *
+#		-> 200 Query
 #
-#	POST Req
-#		-> OK Query
-#	(end)
+#	POST - Req
+#		-> 200 Query
 #
 #	See <Query> and <Req> for details about used data sructures.
+#
+#	header: /gdc/md/<project>/query/<type>
+#
+#	GET - *
+#		-> 200 Query
+#
+#
 #
 # Topic: Flags
 #
@@ -63,15 +76,19 @@
 #	stable-14 - avg 94.4ms / median 95.56ms (statistically unimportant beacause
 #		too much low amount of requests)
 #
-# Topic: Example
+
+###############################################################################
+# Group: Mock-up
 #
-#	(start example)
-#	GET (?author=/gdc/account/profile/72) *
-#	-> OK {   "query" : {
+#   (start example)
+#	GET /gdc/md/<project>/query/attributes
+#	Response
+#	HEAD: 200
+#	BODY: {   "query" : {
 #				"entries" : [
 #				{   "link" : "/gdc/md/30zl394d0ntp3d2ks1aw3lzhaois9x17/obj/127",
 #					"author" : {
-#						"name" : "Hynek Vychodil",
+#						"name" : "Jara Cimrman",
 #						"uri"  : "/gdc/account/profile/72"
 #					},
 #					"tags"        : "",
@@ -82,28 +99,27 @@
 #					"category"    : "attribute",
 #					"updated"     : "2009-10-07 19:27:40",
 #					"contributor" : {
-#						"name" : "Hynek Vychodil",
+#						"name" : "Jara Cimrman",
 #						"uri"  : "/gdc/account/profile/72"
 #					}
 #				},
 #				{   "link" : "/gdc/md/30zl394d0ntp3d2ks1aw3lzhaois9x17/obj/118",
 #					"author" : {
-#						"name" : "Hynek Vychodil",
+#						"name" : "Jara Cimrman",
 #						"uri"  : "/gdc/account/profile/72"
 #					},
 #					"tags"        : "",
-#					"created"     : "2009-10-07 19:27:39",
+#					"created"     : "2009-10-07 19:27:45",
 #					"deprecated"  : "0",
 #					"summary"     : "",
-#					"category"    : "table",
-#					"title"       : "Look up table lu_aaafsm1vshae7b2.",
+#					"category"    : "attribute",
+#					"title"       : "Name",
 #					"updated"     : "2009-11-01 13:09:11",
 #					"contributor" : {
-#						"name" : "Hynek Vychodil",
+#						"name" : "Jara Cimrman",
 #						"uri"  : "/gdc/account/profile/72"
 #					}
-#				},
-#				...
+#				}
 #			],
 #			"meta" : {
 #				"summary" :

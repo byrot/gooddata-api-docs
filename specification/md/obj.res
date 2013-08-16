@@ -7,29 +7,46 @@
 ###############################################################################
 # Group: Description
 #
-#      For creation, deleting, replacing, modifying of an object and getting info about specified object.
+#   __Metadata objects maintenance resource.__
 #
+#   To create, delete, replace, modify and get definition of metadata objects.
+#   Metadata objects are for example attributes, facts, metrics, reports,
+#   report definitions, dashboards, etc.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>
+#   - /gdc/md/<project>/query
+#   - /gdc/md/<project>/dashboard
+#   - /gdc/md/<project>/favorite
+#   - /gdc/md/<project>/reportdefinition
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/obj
-#           /md/(\w+)/obj
+#   header: /gdc/md/<project>/obj
+#           /gdc/md/(\w+)/obj
 #
 #       POST - Object -> URI    % Creates new object
 #
-#           /md/(\w+)/obj?createAndGet=true
+#           /gdc/md/(\w+)/obj?createAndGet=true
 #
 #       POST Object -> Object
 #
 #
-# header: /md/<project>/obj/<id>(?mode=MODE)?
-#         /md/(\w+)/obj/(\w+)
+# header: /gdc/md/<project>/obj/<id>(?mode=MODE)
+#         /gdc/md/(\w+)/obj/(\w+)
+#
+#	GET - * -> Object
 #
 # MODE : 'edit'|'raw'
 #  % edit - restricted to mime type application/xhtml, generate gpUI
 #  % raw - do provide basic structures
+#
+#
+# header: /gdc/md/<project>/obj/<id>
+#         /gdc/md/(\w+)/obj/(\w+)
 #
 #           GET - NULL -> Object    % Get current object representation
 #           PUT - Object -> URI     % Replace object (URI is uri to self)
@@ -39,13 +56,13 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /md/<project>
+#   header: /gdc/md/<project>
 #     GET - project membership
 #     POST - project membership
 #     PUT - project membership
 #     DELETE - project membership
 #
-#   header: /md/<project>/obj/<id>
+#   header: /gdc/md/<project>/obj/<id>
 #
 #     POST - object ownership, class type
 #        attribute: canManageAttribute
@@ -55,7 +72,7 @@
 #        dimension: canManageAttributeGroup
 #        etlFile: canManageETLFile
 #
-#   header: /md/<project>/obj/<id>
+#   header: /gdc/md/<project>/obj/<id>
 #
 #     PUT - object ownership, class type
 #        attribute: canManageAttribute
@@ -1378,4 +1395,18 @@
 #   AttributeContentV1 - see above
 #
 #   ReportDefinitionV1 = ReportDefinition  % with the exception that reportDefinition.content.filters.[ReportFilter.objects] is not optional but missing.
+#
+
+
+###############################################################################
+# Group: Mock-up
+#
+#   header: Create a metric
+#   (start example)
+#	POST /gdc/md/<project>/obj
+#	BODY: {"metric":{"meta":{"title":"Amount (Sum)"},"content":{"expression":"CREATE METRIC {m.amount.sum} AS SUM({f.amount})"}}}
+#	Response
+#	HEAD: 200 Ok
+#	BODY: TODO
+#   (end)
 #

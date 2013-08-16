@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: reportstatistics 
@@ -7,6 +7,8 @@
 ###############################################################################
 # Group: Description
 #
+#	**THIS RESOURCE IS DEPRECATED**
+#
 #    For specified report(s) obtains all asociated comments and
 #    snapshost (reportDefinition).
 #
@@ -14,14 +16,14 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/reportstatistics
-#           /md/(\w+)/reportstatistics
+#   header: /gdc/md/<project>/reportstatistics
+#           /gdc/md/(\w+)/reportstatistics
 #
 #           POST - <RepoStatisticsRequest> -> (200 ok) <ReportStatistics>
 #           GET  - * -> <About>
 #  
-#   header: /md/<project>/reportstatistics/id
-#           /md/<project>/reportstatistics/(\w+)
+#   header: /gdc/md/<project>/reportstatistics/id
+#           /gdc/md/<project>/reportstatistics/(\w+)
 #           
 #           GET - * - > 200 ReportStatistics
 

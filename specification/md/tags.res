@@ -7,26 +7,26 @@
 ###############################################################################
 # Group: Description
 #
-# List of all tags with additionall info.  List of all objects tagged by specific tag(s)
-# Asi pro začátek frekvence / # of all objects
-# nicméně budu to potom potřebovat nějak normovat… ale to už možná udělám client-side…
-# nebo kdybys mohl, tak bys to mohl normovat ty… aby ten rozptyl váhy v
-#každým seznamu co mi vrátíš byl stejnej… to znamená začínal třeba na 0.1
-# a končil na 1.0 ať už je četnost jakákoliv…
+#   __Resource to manage tags of metadata objects.__
+#
+#   The resource provides list of all tags with additional info, or list of
+#   all objects tagged by specific tag(s).
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/tags/
-#           /md/(\w+)/tags
+#   header: /gdc/md/<project>/tags
+#           /gdc/md/(\w+)/tags
 #
-#            GET - * -> <Tags>
+#            GET - *
+#		-> 200 <Tags>
 #  
-#   header: /md/<project>/tags/<tag>
-#           /md/(\w+)/tags/(\w+)
+#   header: /gdc/md/<project>/tags/<tag>
+#           /gdc/md/(\w+)/tags/(\w+)
 #
-#            GET - * -> <Entries>
+#            GET - *
+#		-> 200 <Entries>
 
 ###############################################################################
 # Group: Data Structures

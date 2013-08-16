@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: dataResult
@@ -7,28 +7,37 @@
 ###############################################################################
 # Group: Description
 #
-# UNDOCUMENTED!
+#   __Resource to get report data result.__
+#
+#   Data result contains attribute elements and metric values of
+#   a selected report definition sent to /gdc/xtab2/executor3 resource.
+#
+#   __Related resources:__
+#
+#   - /gdc/xtab2/executor3
+#   - /gdc/md/<project>/obj
+#   - /gdc/md/<project>/reportdefinition
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/dataResult/<id>
-#           /md/(\w+)/dataResult/(\w+)
+#   header: /gdc/md/<project>/dataresult/<id>
+#           /gdc/md/(\w+)/dataresult/(\w+)
 #           ?offset=or,oc;size=sr,sc;display=rows,columns,data
 #  
-#         GET 
-#         - 200 <XTabData>   Result is done, return data.
-#         - 202 NULL (Refresh : INT)  % Result has not been done
-#         - 204 NULL % Report result is empty
-#         - 205 NULL % Execution canceled
-#         - 400 NULL % Malformed xtabID
-#         - 410 NULL % Not found or gone
-#         - 500 NULL % any other error
+#         GET - *
+#         -> 200 <XTabData>   Result is done, return data.
+#         -> 202 NULL (Refresh : INT)  % Result has not been done
+#         -> 204 NULL % Report result is empty
+#         -> 205 NULL % Execution canceled
+#         -> 400 NULL % Malformed xtabID
+#         -> 410 NULL % Not found or gone
+#         -> 500 NULL % any other error
 #         
-#         DELETE 
-#         - 204 No Content % execution canceled
-#         - 412 "Nothing canceled" % nothing to cancel, result is already done or it has been canceled
+#         DELETE - *
+#         -> 204 No Content % execution canceled
+#         -> 412 "Nothing canceled" % nothing to cancel, result is already done or it has been canceled
 #
 #         - all parameters offset, size and display are optional
 #         - offset - default value is 0,0 and or represents number of rows and oc represents number of columns to skip
