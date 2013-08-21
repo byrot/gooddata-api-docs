@@ -10,8 +10,8 @@
 #
 #   __Navigation resource to project maintenance resources.__
 #
-#   It is possible to export and import project metadata, users, or even
-#   project cloning for example.
+#   It is possible to export or import project metadata, and clean up the
+#   project data. You may use it for project cloning for example.
 #
 
 ###############################################################################
