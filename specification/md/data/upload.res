@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: data/upload
@@ -6,14 +6,26 @@
 
 ###############################################################################
 # Group: Description
-#  Provides data upload resource. This resource is intended for pooling if upload is in 'RUNNING' state. 
+#
+#   __Provides data upload status information.__
+#
+#   This resource is intended for pooling if upload is in 'RUNNING' state. 
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/data/sets
+#   - /gdc/md/<project>/data/upload_info
+#   - /gdc/md/<project>/data/uploads
+#
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/data/upload/<id>
+#   header: /gdc/md/<project>/data/upload/<id>
 #
-#          GET - * -> <DataUpload>
+#	GET - *
+#		-> 200 <DataUpload>
 #  
 #   header: DataUpload
 #     

@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: data/sets
@@ -6,16 +6,19 @@
 
 ###############################################################################
 # Group: Description
-#  Provides collection of data sets with additional status informations.
-#  Those are date of last successful upload, status of last upload and link to data_upload resource for last one.
+#
+#   __Provides collection of data sets with additional status informations.__
+#
+#   It is possible to get the date of the latest successful data set upload,
+#   status of the upload and link to data_upload resource.
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/data/sets
+#   header: /gdc/md/<project>/data/sets
 #
-#   GET
+#   GET - *
 #     - (200 OK) DataSetsInfo
 #
 ###############################################################################

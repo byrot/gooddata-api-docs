@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: data/uploads
@@ -6,17 +6,27 @@
 
 ###############################################################################
 # Group: Description
-#  Provides collection of data uploads with links to data_upload resources and its status. 
-#  It returns uploads sorted from newest to oldest. 
-#  In first implementation it will returns just first page (30 last uploads). 
 #
+#   __Collects data sets upload history.__
+#
+#   The resource provides collection of data uploads with links to data_upload
+#   resources and their status. The uploads are ordered from the newest to the
+#   oldest one.
+#
+#   __Related resources:
+#
+#   - /gdc/md/<project>/data/sets
+#   - /gdc/md/<project>/data/upload_info
+#   - /gdc/md/<project>/data/upload
+# 
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/data/uploads
+#   header: /gdc/md/<project>/data/uploads
 #
-#          GET - * -> <DataUploads>
+#	GET - *
+#		-> 200 <DataUploads>
 #  
 #   header: DataSetsInfo
 #     

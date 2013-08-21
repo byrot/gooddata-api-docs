@@ -1,4 +1,4 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: data/upload_info
@@ -7,14 +7,23 @@
 ###############################################################################
 # Group: Description
 #
+#   __Provides data upload status information.__
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/data/sets
+#   - /gdc/md/<project>/data/upload
+#   - /gdc/md/<project>/data/uploads
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/data/uploads_info
+#   header: /gdc/md/<project>/data/uploads_info
 #
-#          GET - * -> <DataUploadInfo>
+#	GET - *
+#		-> 200 <DataUploadInfo>
 #  
 #   header: MappingsInfo
 #     
