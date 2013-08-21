@@ -1,38 +1,39 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: using2 and usedby2
 #
-#	Resource returning dependency information about objects
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-# All resources in this documentation return persistent objects only.
+#   Resource to discover dependency information of metadata objects.
+#   It returns references to persistent objects only.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/obj
+#   - /gdc/md/<project>/using2
+#   - /gdc/md/<project>/usedby2
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: using
 #
 # resource returning objects which specified object is using.
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/using2
-#
-#	parameters:
-#		none
-#
-#   (start example)
-#	POST 
-#	     InUse     -> OK Entries    % to post one object only
-#		 InUseMany -> OK UseMany
-#		 InUseMix  -> OK UseMany
-#	(end)
+#	header: /gdc/md/<project>/using2
+#	POST - InUse
+#		-> 200 Entries    % to post one object only
+#	POST - InUseMany
+#		-> 200 UseMany
+#	POST - InUseMix
+#		-> 200 UseMany
 #
 # This resource can be used in two ways - either for getting one object dependencies or
 # for getting dependencies for serie of objects.
@@ -69,24 +70,19 @@
 #	{There should be shown and commented example of calls, structures and using
 #	this resource.}
 #
-
-###############################################################################
+#
 # Resource: using_id
 #
 # resource returning objects which specified object is using.
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/using/<id>
+#	header: /gdc/md/<project>/using2/<id>
 #
-#	parameters:
-#		none
-#
-#
-#   (start example)
-#	GET *     -> OK Entries
-#	GET types -> OK Entries % types = comma separated values
-#	(end)
+#	GET - *
+#		-> 200 Entries
+#	GET - types
+#		-> 200 Entries % types = comma separated values
 #
 # Topic: Flags
 #
@@ -121,8 +117,7 @@
 #	{There should be shown and commented example of calls, structures and using
 #	this resource.}
 #
-
-###############################################################################
+#
 # Resource: usedby
 #
 # resource returning objects which uses specified object (ie. object is used by
@@ -130,17 +125,17 @@
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/usedby
+#	header: /gdc/md/<project>/usedby2
 #
 #	parameters:
 #		none
 #
-#   (start example)
-#	POST 
-#	     InUse     -> OK Entries    % to post one object only
-#		 InUseMany -> OK UseMany
-#		 InUseMix  -> OK UseMany
-#	(end)
+#	POST - InUse
+#		-> 200 Entries    % to post one object only
+#	POST - InUseMany
+#		-> 200 UseMany
+#	POST - InUseMix
+#		-> 200 UseMany
 #
 # This resource can be used in two ways - either for getting one object dependencies or
 # for getting dependencies for serie of objects.
@@ -177,8 +172,8 @@
 #	{There should be shown and commented example of calls, structures and using
 #	this resource.}
 #
-
-###############################################################################
+#
+#
 # Resource: usedby_id
 #
 # resource returning objects which uses specified object (ie. object is used by
@@ -186,15 +181,12 @@
 
 # Topic: Synopsis
 #
-#>	/md/<project>/usedby/<id>
+#	header: /gdc/md/<project>/usedby2/<id>
 #
-#	parameters:
-#		none
-#
-#   (start example)
-#	GET *     -> OK Entries
-#	GET types -> OK Entries % types = comma separated values
-#	(end)
+#	GET - *
+#		-> 200 Entries
+#	GET - types
+#		-> 200 Entries % types = comma separated values
 #
 # Topic: Flags
 #
@@ -292,11 +284,25 @@
 #
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#	{There should be shown and commented example workflow on resources
-#	documented in this document}
+#
+#   (start example)
+#	POST /gdc/md/<project>/using2
+#	BODY: {"inUse":{"uri":"/gdc/md/<project>/obj/1028","types":["tableDataLoad","table"]}}
+#	Response
+#	HEAD: 200
+#	BODY: {"entries":[{"link":"/gdc/md/<project>/obj/1083","author":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1","created":"2013-01-16 10:20:14","deprecated":"0","summary":"tableDataLoad dwh_dm_aac9ahyajuaoxqp from share dimension import process","updated":"2013-01-16 10:20:14","title":"share tableDataLoad dwh_dm_aac9ahyajuaoxqp","category":"tableDataLoad","contributor":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1"},{"link":"/gdc/md/<project>/obj/1027","author":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1","created":"2013-01-16 10:20:02","deprecated":"0","summary":"Table named lu_week_in_year for attribute Week (Sun-Sat).","updated":"2013-01-16 10:20:17","title":"lu_week_in_year (End Date)","category":"table","contributor":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1"}]}
+#   (end)
+#
+#   (start example)
+#	POST /gdc/md/<project>/usedby2
+#	BODY: {"inUse":{"uri":"/gdc/md/<project>/obj/1028","types":["tableDataLoad","table"]}}
+#	Response
+#	HEAD: 200
+#	BODY: {"entries":[{"link":"/gdc/md/<project>/obj/1031","author":"/gdc/account/profile/7eaf666e2ed30bc23e6ff3428af884a1","created":"2013-01-16 10:20:02","deprecated":"0","summary":"DisplayForm Number US.","updated":"2013-01-16 10:20:02","title":"Number US (End Date)","category":"attributeDisplayForm","contributor":"/gdc/account/profile/7eaf666e2ed30bc23e6ff3428af884a1"},{"link":"/gdc/md/<project>/obj/1052","author":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1","created":"2013-01-16 10:20:03","deprecated":"0","summary":"DataSet Date","updated":"2013-01-16 10:20:03","title":"Date (End Date)","category":"dataSet","contributor":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1"},{"link":"/gdc/md/<project>/obj/1030","author":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1","created":"2013-01-16 10:20:02","deprecated":"0","summary":"Generic Week based on US Weeks (Sun-Sat)","updated":"2013-01-16 10:20:04","title":"Week (Sun-Sat) (End Date)","category":"attribute","contributor":"/gdc/account/profile/5caf666e2ed30bc23e6ff3428af884a1"}]}
+#   (end)
+#
 
 ################################################################################
 # Section: Info

@@ -1,35 +1,37 @@
-# Copyright (C) 2007-2012, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: validate project
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource capable validate project for ldm, pdm, invalid_objects, ...
+#   __Project validation resource.__
+#
+#   It checks the LDM and PDM, finds invalid objects and inconsistent data
+#   (transitivity issues or broken referential integrity).
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: validate
 #
 #	Create asynchronous task to run selected validations on project.
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/validate
+#	header: /gdc/md/<project>/validate
 #
-#   (start example)
-#	GET *
+#	GET - *
 #		-> (200 OK) <AvailableValidations>
 #
-#	POST <ValidateProject>
+#	POST - <ValidateProject>
 #		-> (201 Created) <AsyncTask>
 #		-> (400 Bad request) <ErrorStruct>
-#    (end)
+#
 #
 # Topic: Flags
 #
@@ -53,9 +55,11 @@
 #	POST  { validateProject : [ 'ldm', 'pdm' ] },
 #	receive URI and follow the link
 #
-# Topic: Security Consideration
+
+###############################################################################
+# Group: Security Consideration
 #
-#   header: /md/<project>/validate
+#   header: /get/md/<project>/validate
 #     GET - canValidateProject
 #     POST - canValidateProject
 #
@@ -68,7 +72,7 @@
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/validate/task/< task_id >
+#	header: /gdc/md/<project>/validate/task/<task-id>
 #
 #   (start example)
 #	GET *
@@ -94,7 +98,7 @@
 #
 # Topic: Security Consideration
 #
-#   header: /md/<project>/validate/task/<task_id>
+#   header: /gdc/md/<project>/validate/task/<task-id>
 #     GET - canValidateProject
 #
 
@@ -105,13 +109,11 @@
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/validate/result/< result_id >
+#	header: /gdc/md/<project>/validate/result/<result-id>
 #
-#   (start example)
-#	GET *
+#	GET - *
 #		-> (200 OK) <ProjectValidateResult>
-#       -> (404 Not found)
-#   (end)
+#       	-> (404 Not found)
 #
 # Topic: Flags
 #
@@ -128,7 +130,7 @@
 #
 # Topic: Security Consideration
 #
-#   header: /md/<project>/validate/result/<result_id>
+#   header: /gdc/md/<project>/validate/result/<result-id>
 #     GET - canValidateProject
 #
 
@@ -202,6 +204,18 @@
 #     }
 #   }>
 # (end)
+
+################################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/md/<project>/validate
+#	BODY: {"validateProject":["ldm","pdm","invalid_objects","metric_filter"]}
+#	Response
+#	HEAD: 201
+#	{"uri" : "/gdc/md/<project>/validate/16e432b"}
+#   (end)
+#
 
 ################################################################################
 # Section: Info
