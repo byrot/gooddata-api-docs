@@ -1,54 +1,55 @@
-# Copyright (C) 2007-2011, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: dml-manage
 #
-# Data manipulation language managing.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#  Structures provided and requested on resource for data manipulation.
-#  A maql posted on resource is parsed and processes. It creates an etl 
-#  worker task and starts it. Provides uri to status of task.
+#   __Data manipulation language resource.__
+#
+#   GoodData DML is language to delete data from the project data marts.
+#   A statement posted to this resource is parsed and processed: an etl task
+#   is started to do the job. URI to status of the task is returned.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/maqlvalidator
+#   - /gdc/md/<project>/ldm/manage2
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: dml
 #
 #	Navigation resource to DML resources.
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/dml
+#	header: /gdc/md/<project>/dml
 #
-#   (start example)
-#	GET *
-#		-> OK About
-#	(end)
+#	GET - *
+#		-> 200 About
 #
-
-###############################################################################
+#
+#
 # Resource: dml-manage
 #
 #	Manage warehouse data with MAQL DML commands.
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/dml/manage
+#	header: /gdc/md/<project>/dml/manage
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> (200) About
 #
-#	POST Manage
-#		-> URI
+#	POST - Manage
+#		-> (201) URI
 #		-> (400 Bad request) ErrorStruct
-#	(end)
 #
 # Topic: Flags
 #
@@ -76,15 +77,19 @@
 #
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#	Manage = < manage : {
-#	  maql: 'DELETE FROM {attr.factsof} WHERE {label.created.iso} BETWEEN "2010-01-01" AND "2010-12-31";'
-#	} >
+#   (start example)
+#	POST /gdc/md/<project>/dml/manage
+#	BODY: {"manage":{"maql":"DELETE FROM {attr.factsof} WHERE {label.created.iso} BETWEEN \"2010-01-01\" AND \"2010-12-31\";"}}
+#	Response
+#	HEAD: 201
+#	BODY: {"uri":"/gdc/md/<project>/etltask/115bded"}
+#   (end)
+#
 
 ################################################################################
-# Section: Info
+# Group: Info
 ################################################################################
 #
 # About: Owner(s)
