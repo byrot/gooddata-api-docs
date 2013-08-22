@@ -7,6 +7,8 @@
 ###############################################################################
 # Group: Description
 #
+#   __THIS RESOURCE IS DEPRECATED__
+#
 #      For getting element and its display form for a specified attributeDisplayForm.
 #   You can request only some elements.
 #

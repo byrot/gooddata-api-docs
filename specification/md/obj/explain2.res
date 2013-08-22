@@ -13,10 +13,11 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/obj/<id>/explain2[?type=east|oqt|sql|ldm|pdm&type=json|html]
-#           /md/(\w+)/obj/(\w+)/explain2
+#   header: /gdc/md/<project>/obj/<id>/explain2
+#           /gdc/md/(\w+)/obj/(\w+)/explain2[?type=east|oqt|sql|ldm|pdm&type=json|html]
 #
-#           GET - NULL -> Explain2
+#           GET - NULL
+#		-> 200 Explain2
 #
 
 ###############################################################################
@@ -119,12 +120,13 @@
 #   (end)
 
 ###############################################################################
-# Group: Example
+# Group: Mock-up
 #
 #   (start example)
-#   GET http://example.com/gdc/md/FoodMartDemo/obj/1024/explain2?type=ldm&type=json
-#
-#   ---
+#   GET /gdc/md/<project>/obj/1024/explain2?type=ldm&type=json
+#   Response
+#   HEAD: 200
+#   BODY:
 #   {
 #     "staticLDM" : {
 #       "vertices" : [

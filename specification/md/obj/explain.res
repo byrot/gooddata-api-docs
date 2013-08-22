@@ -7,6 +7,8 @@
 ###############################################################################
 # Group: Description
 #
+#   __THIS RESOURCE IS DEPRECATED__
+#
 #      For explain reportDefinition decomposition.
 #
 

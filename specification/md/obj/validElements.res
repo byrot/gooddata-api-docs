@@ -1,27 +1,29 @@
 # Copyright (C) 2007-2012, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
-#   Section: obj/<id>/validElements
+#   Section: validElements
 #
 
 ###############################################################################
 # Group: Description
 #
-#      For getting all or valid attribute elements to display form object
+#   __Resource to get attribute elements (values).__
+#
+#   Attribute elements may be restricted to valid elements relevant to some
+#   report definition. Mandatory user filters are always applied.
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/obj/<id>/validElements?[limit=INT]&[offset=INT]&[order=(asc | desc)]&[filter=STRING]&[prompt=URISTRING]
+#   header: /gdc/md/<project>/obj/<id>/validElements
+#           /gdc/md/<project>/obj/<id>/validElements?[limit=INT]&[offset=INT]&[order=(asc|desc)]&[filter=STRING]&[prompt=URISTRING]
 #
 #           POST - <ValidElementsRequest>
 #           - (200 Ok) <ValidElements>
 #           - (204 No Content )
 #           - (303 See Other) <Uri> % Start polling
 #
-#   header: /md/<project>/obj/<id>/validElements/<params>
-# 
 #           GET
 #           - (200 Ok) <ValidElements>
 #           - (202 Accept) <Uri>
@@ -70,6 +72,16 @@
 #                   }
 #                }
 #   >
+#   (end)
+
+###############################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/md/<project>/obj/123/validElements
+#	BODY: {"validElementsRequest":{"restrictiveDefinition":"/gdc/md/<project>/obj/654"}}
+#	Response
+#	HEAD: 303
 #   (end)
 
 ################################################################################
