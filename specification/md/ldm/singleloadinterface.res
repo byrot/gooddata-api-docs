@@ -1,20 +1,26 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: SingleLoadInterface
 #
-#	Provides DataSetSLI and Manifest structure for specified dataset.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Tree of links for datasetsli, manifest and all in one zipped container.
-#	Also a POST method is allowed to get an answer for specific dataset.
+#   __Provides DataSetSLI and Manifest structure for specified dataset.__
+
+#   It is possible to use the dataset templates to load your own data.
+#   Just fill the CSV with your data, upload to staging area, and start ETL.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/ldm/dataloadinterface
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
+# Group: Resource(s)
+#
 ###############################################################################
 # Resource: 
 #
@@ -22,18 +28,16 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/singleloadinterface
+#	header: /gdc/md/<project>/ldm/singleloadinterface
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> (200 OK) About
 #		-> (404 Not Found) * % Key is not defined
 #
-#	POST SLIRequest
-#		-> OK SLILinks
+#	POST - SLIRequest
+#		-> (200 OK) SLILinks
 #		-> (400 Bad request) ErrorStruct % Request is wrong
 #		-> (404 Not Found) *             % Key is not defined
-#    (end)
 #
 #
 # Topic: Flags
@@ -70,13 +74,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/singleloadinterface/<dataset>
+#	/gdc/md/<project>/ldm/singleloadinterface/<dataset>
 #
-#   (start example)
-#	GET *
-#		-> OK SLILinks
+#	GET - *
+#		-> (200 OK) SLILinks
 #		-> (404 Not Found) * % Key is not defined
-#    (end)
 #
 #
 # Topic: Flags
@@ -111,13 +113,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/singleloadinterface/<dataset>/descriptor
+#	header: /gdc/md/<project>/ldm/singleloadinterface/<dataset>/descriptor
 #
-#   (start example)
-#	GET *
-#		-> OK DataSetSLI
+#	GET - *
+#		-> (200 OK) DataSetSLI
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -152,13 +152,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/singleloadinterface/<dataset>/manifest
+#	header: /gdc/md/<project>/ldm/singleloadinterface/<dataset>/manifest
 #
-#   (start example)
-#	GET *
-#		-> OK DataSetSLIManifest
+#	GET - *
+#		-> (200 OK) DataSetSLIManifest
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -194,13 +192,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/singleloadinterface/<dataset>/template
+#	header: /gdc/md/<project>/ldm/singleloadinterface/<dataset>/template
 #
-#   (start example)
-#	GET *
-#		-> OK TemplatesArchive
+#	GET - *
+#		-> (200 OK) TemplatesArchive
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags

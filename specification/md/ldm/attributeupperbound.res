@@ -18,28 +18,34 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/ldm/attributeupperbound
+#   header: /gdc/md/<project>/ldm/attributeupperbound
 #  
-#        POST - <AttributeUpperBounds> -> <AttributeUpperBounds>
+#        POST - <AttributeUpperBounds>
+#		-> 200 <AttributeUpperBounds>
 #
 # Topic: Synopsis
 #
-#       /md/<project>/ldm/attributeupperbound
+#       /gdc/md/<project>/ldm/attributeupperbound
 #
-# (start example)
-#   GET *
-#     - (200 Ok) <About>
+
+###############################################################################
+# Group: Mock-up
 #
-#   POST <AttributeUpperBounds>
-#     - (200 Ok) <AttributeUpperBoundsResponse>
-#     - (400 Bad request) ErrorStruct
-# (end)
+#   (start example)
+#	POST /gdc/md/<project>/ldm/attributeupperbound
+#	BODY: {"attributeUpperBounds":{"attributes":["/gdc/md/<project>/obj/123","/gdc/md/<project>/obj/321"],"all":"0"}}
+#	Response
+#	HEAD: 200
+#	BODY: {"attributeUpperBoundsResponse":["/gdc/md/<project>/obj/567"]}
+#   (end)
+#
 
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /md/<project>/ldm/attributeupperbound
+#   header: /gdc/md/<project>/ldm/attributeupperbound
 #     POST - canInitData
+#
 
 ###############################################################################
 # Group: Data Structures

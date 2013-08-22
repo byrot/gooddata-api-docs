@@ -1,39 +1,43 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: DataLoadInterface
 #
-#	Provides DataSetDLI and Manifest structure for specified dataset.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Tree of links for datasetdli, manifest and all in one zipped container.
-#	Also a POST method is allowed to get an answer for specific dataset.
+#   __Provides DataSetDLI and Manifest structure for specified dataset.__
+#
+#   It is possible to use the dataset templates to load your own data.
+#   Just fill the CSV with your data, upload to staging area, and start ETL.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/ldm/singleloadinterface
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: 
 #
 #	DataLoadingInterface root, provides About structure.
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface
+#	header: /gdc/md/<project>/ldm/dataloadinterface
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> (200 OK) About
 #		-> (404 Not Found) * % Key is not defined
 #
-#	POST DLIRequest
-#		-> OK DLILinks
+#	POST - DLIRequest
+#		-> (200 OK) DLILinks
 #		-> (400 Bad request) ErrorStruct % Request is wrong
 #		-> (404 Not Found) *             % Key is not defined
-#    (end)
 #
 #
 # Topic: Flags
@@ -61,22 +65,20 @@
 #	GET, receive About, follow one of links.
 #	POST DLIRequest { dliRequest : { dataSet = "dataset.one" } },
 #	receive DLILinks and follow one of required link
-
-
+#
+#
 ###############################################################################
-# Resource: 
+# Resource:
 #
 #	Dataset DataLoadingInterface, provides DLILinks for specific resource.
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface/<dataset>
+#	header: /gdc/md/<project>/ldm/dataloadinterface/<dataset>
 #
-#   (start example)
-#	GET *
-#		-> OK DLILinks
+#	GET - *
+#		-> (200 OK) DLILinks
 #		-> (404 Not Found) * % Key is not defined
-#    (end)
 #
 #
 # Topic: Flags
@@ -105,19 +107,17 @@
 
 
 ###############################################################################
-# Resource: 
+# Resource:
 #
 #	DataSetInterface, provides DataSetDLI stucture
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface/<dataset>/descriptor
+#	header: /gdc/md/<project>/ldm/dataloadinterface/<dataset>/descriptor
 #
-#   (start example)
-#	GET *
-#		-> OK DataSetDLI
+#	GET - *
+#		-> (200 OK) DataSetDLI
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -152,13 +152,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface/<dataset>/manifest
+#	/gdc/md/<project>/ldm/dataloadinterface/<dataset>/manifest
 #
-#   (start example)
-#	GET *
-#		-> OK DataSetManifest
+#	GET - *
+#		-> (200 OK) DataSetManifest
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -194,13 +192,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface/<dataset>/template
+#	/gdc/md/<project>/ldm/dataloadinterface/<dataset>/template
 #
-#   (start example)
-#	GET *
-#		-> OK TemplatesArchive
+#	GET - *
+#		-> (200 OK) TemplatesArchive
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -237,13 +233,11 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/dataloadinterface/<dataset>/ldmdli
+#	header: /gdc/md/<project>/ldm/dataloadinterface/<dataset>/ldmdli
 #
-#   (start example)
-#	GET *
-#		-> OK DataSetLDMDLI
+#	GET - *
+#		-> (200 OK) DataSetLDMDLI
 #		-> (404 Not Found) * % Key is not defined
-#   (end)
 #
 #
 # Topic: Flags
@@ -269,6 +263,22 @@
 # Topic: Example
 #
 #	GET, receive DataSetLDMDLI
+#
+#
+###############################################################################
+#
+#	header: /gdc/md/<project>/ldm/dataloadinterface/<dataset>/template
+#
+#	GET - *
+#		-> (200 OK)
+#
+###############################################################################
+#
+#	header: /gdc/md/<project>/ldm/dataloadinterface/<dataset>/manifest
+#
+#	GET - *
+#		-> (200 OK)
+#
 
 
 ###############################################################################
@@ -409,15 +419,9 @@
 #   (end)
 #
 
-###############################################################################
-# Section: Example
-###############################################################################
-#
-#	{There should be shown and commented example workflow on resources
-#	documented in this document}
 
 ################################################################################
-# Section: Info
+# Group: Info
 ################################################################################
 #
 # About: Owner(s)

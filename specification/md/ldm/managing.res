@@ -1,21 +1,26 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: ldm-manage
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#  Structures provided and requested on resource for managing of logical model.
-#  A maql posted on resource is parsed and processes after that list of all
-#  objects identified within maql except deleted are returned.
+#   __Manage project's logical data model.__
+#
+#   The logical data model is the core concept of GoodData. It can be managed
+#   from this resource using MAQL data definition language (DDL).
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/maqlvalidator
+#   - /gdc/md/<project>/dml
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
+# Group: Resource(s)
+#
 ###############################################################################
 # Resource: ldm-manage
 #
@@ -23,12 +28,10 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/manage
+#	header: /gdc/md/<project>/ldm/manage
 #
-#   (start example)
-#	POST Manage
-#		-> URIResponses
-#	(end)
+#	POST - Manage
+#		-> 200 URIResponses
 #
 # Topic: Flags
 #
@@ -57,7 +60,7 @@
 #
 # Topic: Security Consideration
 #
-#   header: /md/<project>/ldm/manage
+#   header: /gdc/md/<project>/ldm/manage
 #     POST - canInitData
 #
 
@@ -73,12 +76,10 @@
 #
 # Topic: Synopsis
 #
-#	/md/<project>/ldm/manage2
+#	header: /gdc/md/<project>/ldm/manage2
 #
-#   (start example)
-#	POST Manage
-#		-> Entries
-#	(end)
+#	POST - Manage
+#		-> 200 Entries
 #
 # Topic: Flags
 #
@@ -107,7 +108,7 @@
 #
 # Topic: Security Consideration
 #
-#   header: /md/<project>/ldm/manage2
+#   header: /gdc/md/<project>/ldm/manage2
 #     POST - canInitData
 #
 
@@ -135,16 +136,24 @@
 #
 
 ###############################################################################
-# Section: Example
+# Group: Mock-up
 ###############################################################################
 #
 #	Manage = < manage : {
 #	  maql: 'ALTER ATTRIBUTE {a} ADD KEYS {table.column1} PRIMARY, {table1.column2}, {table2.column3};
 #		CREATE ATTRIBUTE {attr.opportunity.category} AS {tab_cat.col_id} FULLSET;'
 #	} >
+#   (start example)
+#	POST /gdc/md/<project>/ldm/manage2
+#	BODY: {"manage":{"maql":"ALTER ATTRIBUTE {a} ADD KEYS {table.column1} PRIMARY, {table1.column2}, {table2.column3}; CREATE ATTRIBUTE {attr.opportunity.category} AS {tab_cat.col_id} FULLSET; SYNCHRONIZE DATASET {d} PRESERVE DATA;"}}
+#	Response
+#	HEAD: 200
+#	BODY: {"entries":[{"link":"/gdc/md/<project>/tasks/43dfbcd/status","category":"tasks-status"}]}
+#   (end)
+#
 
 ################################################################################
-# Section: Info
+# Group: Info
 ################################################################################
 #
 # About: Owner(s)
