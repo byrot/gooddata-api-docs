@@ -1,41 +1,49 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: pull
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource capable start loading data into DWH from pull directory
-#	It creates an etl worker task and starts it. Provides uri to status
-#	of task.
+#   __Resource to start ETL tasks.__
+#
+#   ETL (extract-transform-load) tasks get data from the staging area,
+#   do some transformations (in SLI mode normalisation and SLI hash ID
+#   auto-generation), and load data sets into database tables.
+#   URI of ETL task status is returned.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/mode
+#   - /gdc/md/<project>/etl/task
+#   - /gdc/md/<project>/ldm/dataloadinterface
+#   - /gdc/md/<project>/ldm/singleloadinterface
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource:
 #
 #	Create etl worker task over specified pull directory and execute it.
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/etl/pull
+#	header: /gdc/md/<project>/etl/pull
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> (200 OK) About
 #
-#	POST pullIntegration
-#		-> pullTask
+#	POST - pullIntegration
+#		-> (200 pullTask)
 #		-> (400 Bad request) ErrorStruct
 #		  - upload.json file not found
 #		  - zip decompress failed
 #		  - upload.json file not found even after decompress of zip file
 #		  - upload.json validation failed
-#    (end)
 #
 # Topic: Flags
 #
@@ -61,13 +69,9 @@
 #
 #	--
 #
-# Topic: Example
-#
-#	GET, receive About.
-#	POST  { dliRequest : { dataSet = "dataset.one" } },
-#	receive DLILinks and follow one of required link
-#
-# Topic: Security Consideration
+
+###############################################################################
+# Group: Security Consideration
 #
 #   header: /md/<project>/ldm/manage
 #     POST - canRefreshData
@@ -108,11 +112,16 @@
 #
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#	{There should be shown and commented example workflow on resources
-#	documented in this document}
+#   (start example)
+#	POST /gdc/md/<project>/etl/pull
+#	BODY: { "pullIntegration" : "staging/2013-08-23/dataset1" }
+#	Response
+#	HEAD: 200
+#	BODY: { "uri" : "/gdc/md/<project>/etl/task/45f12aa" }
+#   (end)
+#
 
 ################################################################################
 # Section: Info

@@ -1,35 +1,44 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: project upload mode
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#    Resource providing information about upload mode.
+#   __Resource to change or get information about upload mode.__
+#
+#   Upload mode can be DLI or SLI. SLI uses DLI internally, and provides
+#   technical keys auto-generation persistent mechanism. If you choose DLI,
+#   you will need to load your own technical keys. In a project you cannot
+#   combine both modes, one for some data set, and the second for the rest.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/ldm/singleloadinterface
+#   - /gdc/md/<project>/ldm/dataloadinterface
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource:
 #
 #    Pull-Mode
 #
 # Topic: Synopsis
 #
-#>     gdc/md/< project >/etl/mode
+#	header: /gdc/md/<project>/etl/mode
 #
-#   (start example)
-#    GET *
-#        -> ETLMode
+#    GET - *
+#        -> (200 Ok) ETLMode
 #
-#    POST ETLMode
+#    POST - ETLMode
 #        -> (200 Ok) URI
 #        -> (400 Bad request) ErrorStruct
-#    (end)
 #
 # Topic: Flags
 #
@@ -60,10 +69,9 @@
 #
 
 ###############################################################################
-# Section: Data Structures
-###############################################################################
-
-###############################################################################
+# Group: Data Structures
+#
+#
 # Structure: ETLMode
 #
 #    Project upload mode.
@@ -92,11 +100,24 @@
 #  (end)
 
 ###############################################################################
-# Section: Example
-###############################################################################
+# Group: Mock-up
 #
-#    {There should be shown and commented example workflow on resources
-#    documented in this document}
+#   (start example)
+#	POST /gdc/md/<project>/etl/mode
+#	BODY: {"etlMode":{"mode":"SLI","sli":[{"dataSetSLIManifest":{"parts":[{"columnName":"f_towns.nm_town","populates":["label.towns.town"],"mode":"FULL","referenceKey":1},{"columnName":"d_towns_country.nm_country","populates":["label.towns.country"],"mode":"FULL","referenceKey":1},{"columnName":"f_towns.f_inhabitants","populates":["fact.towns.inhabitants"],"mode":"FULL"}],"file":"dataset.towns.csv","dataSet":"dataset.towns"}}]}}
+#	Response
+#	HEAD: 200
+#	BODY: {"uri":"/gdc/md/<project>/etl/task/40ab412"}
+#   (end)
+#
+#   (start example)
+#	POST /gdc/md/<project>/etl/mode
+#	BODY: {"etlMode":{"mode":"DLI"}}
+#	Response
+#	HEAD: 200
+#	BODY: {"uri":"/gdc/md/<project>/etl/task/40ab412"}
+#   (end)
+#
 
 ################################################################################
 # Section: Info

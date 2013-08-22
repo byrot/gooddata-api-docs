@@ -1,31 +1,36 @@
-# Copyright (C) 2007-2010, GoodData(R) Corporation. All rights reserved.
+# Copyright (C) 2007-2013, GoodData(R) Corporation. All rights reserved.
 ###############################################################################
 #
 #   Section: task
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	Resource providing status of data upload task of pull or push mechanism.
+#   Resource providing status of data upload task of pull or push mechanism.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/&lt;project&gt;/etl/mode
+#   - /gdc/md/&lt;project&gt;/etl/pull
+#   - /gdc/md/&lt;project&gt;/ldm/dataloadinterface
+#   - /gdc/md/&lt;project&gt;/ldm/singleloadinterface
+#
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource:
 #
 #	Core resource, provides only about structure.
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/etl/task
+#	header: /gdc/md/<project>/etl/task
 #
-#   (start example)
-#	GET *
+#	GET - *
 #		-> 200 OK About
-#    (end)
 #
 # Topic: Flags
 #
@@ -59,14 +64,12 @@
 #
 # Topic: Synopsis
 #
-#>	 gdc/md/< project >/etl/task/< id >
+#	header: /gdc/md/<project>/etl/task/<id>
 #
-#   (start example)
-#	GET *
+#	GET - *
 #		-> 200 OK TaskStatus
 #		-> 404 NotFound % no such upload info
 #		-> 410 Gone % task is in other state than OK,ERROR,RUNNING,PREPARED, ex. DELETED
-#    (end)
 #
 # Topic: Flags
 #
