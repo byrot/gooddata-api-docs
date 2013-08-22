@@ -15,15 +15,17 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/query/dimension
-#       /md/(\w+)/query/dimension
+#   header: /gdc/md/<project>/query/dimension
+#       /gdc/md/(\w+)/query/dimension
 #
-#       POST - <Req> -> <Dimension>
+#       POST - <Req>
+#		-> 200 <Dimension>
 #  
-#   header: /md/<project>/query/dimension/(id)
-#           /md/(\w+)/query/dimension/(\w+)
+#   header: /gdc/md/<project>/query/dimension/<id>
+#           /gdc/md/(\w+)/query/dimension/(\w+)
 #
-#        GET - * -> <Dimension>
+#        GET - *
+#		-> 200 <Dimension>
 #  
 
 ###############################################################################
