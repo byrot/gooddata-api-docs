@@ -177,8 +177,9 @@ sub blueprint {
 	# Simple examples
 	for my $k ( sort keys %{ $r->{resources} } ) {
 		for my $m ( sort keys %{ $r->{resources}->{$k} } ) {
-			# Print all possible return status codes
-			print "$m $k\n< " . join( "\n< ", sort keys %{ $r->{resources}->{$k}->{$m} } ) . "\n\n\n"
+			# Print all possible return status codes - not supported in blueprint v. 1
+			# print "$m $k\n< " . join( "\n< ", sort keys %{ $r->{resources}->{$k}->{$m} } ) . "\n\n\n"
+			print "$m $k\n< " . [ sort keys %{ $r->{resources}->{$k}->{$m} } ]->[0] . "\n\n\n"
 				unless exists $exc{ $m . $k };
 			$exc{ $m . $k } = undef;
 		}
