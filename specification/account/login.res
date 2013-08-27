@@ -5,35 +5,40 @@
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#	This resource takes care of authentication of users and it generating secure tokens.
-#	https://wiki.gooddata.com/bin/view/Doc/GdcDocumentationAuthServer
+#   __Authentication and token generating resource.__
+#
+#   Use it to authenticate, get token, and logout.
+#
+#   __Related resources:__
+#
+#   - /gdc/account
+#   - /gdc/account/token
+#   - /gdc/account/registration
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
+#
 # Resource: login
 #
 #	Authenticate users.
 #
-# Topic: Synopsis
+# Section: Synopsis
 #
-#>	/gdc/account/login
+#	header: /gdc/account/login
 #
-#   (start example)
 #   POST PostUserLogin | PublicAccess
 #      -> OK UserLogin # SST was generated and saved to cookie
 #      -> (403 Forbiden) ResendRegistration # User was authenticated but wasnt verified
 #      -> (400 Bad request) # User wasn't authenticated
-#	(end)
 #
 #   See <PostUserLogin> and <UserLogin> for details about used data sructures.
 #
-# Topic: Flags
+# Section: Flags
 #
 #	See <Flags Semantics> for details.
 #
@@ -42,62 +47,38 @@
 # visibility - public
 # state - supported since CS1
 #
-# Topic: Description
+# Section: Description
 #
 #  This resource provide authentication access point to GDC.
 #  It is used by the client and generates unique secure token.
 #
-# Topic: Random Remarks
+# Section: Random Remarks
 #
 #	{performance, complexity, related resources, etc.}
 #
-# Topic: Performance mini-status
+# Section: Performance mini-status
 #
 #	stable-17:
 #	POST - avg 144ms, median 130ms
 #
-# Topic: Example
-#
-#	Login:
-#
-#	(start example)
-#   POST http://localhost/gdc/account/login/
-#   Request
-#   BODY: {"postUserLogin":{"password":"my_passsword","login":"bad@email.com","remember":"0","vefify_level":"0"}}
-#   Response
-#   HEAD: 400 Bad Request
-#   
-#   POST http://localhost/gdc/account/login/
-#   Request
-#   BODY: {"postUserLogin":{"password":"my_passsword","login":"ok@email.com","remember":"0"}}
-#   Response
-#   HEAD: 200 OK
-#   BODY: 
-#   --- 
-#   userLogin: 
-#     profile: /gdc/account/profile/1234567890
-#     state: /gdc/account/login/1234567890
-#	(end)
-#
+
 
 ###############################################################################
 # Resource: logout
 #
 #	Logout users.
 #
-# Topic: Synopsis
+# Section: Synopsis
 #
-#>	/account/login/$uniquestring
+#	header: /gdc/account/login/<uniquestring>
 #
-#   (start example)
 #   DELETE * 
 #      -> (204 No Content) #logout
 #      -> (401 Unauthorized) # Temporary token has expired
 #      -> (404 Not found) # User wasn't log out.(doesn't exists)
 #
-#	(end)
 #
-# Topic: Flags
+# Section: Flags
 #
 #	See <Flags Semantics> for details.
 #
@@ -106,33 +87,18 @@
 # visibility - public
 # state - supported since CS1
 #
-# Topic: Description
+# Section: Description
 #
 #  This resource logout users from GDC.
 #  It is used by the client and remove secure token from cookie and C3.
 #
-# Topic: Random Remarks
+# Section: Random Remarks
 #
 #	{performance, complexity, related resources, etc.}
 #
-# Topic: Performance mini-status
+# Section: Performance mini-status
 #
 #	{stable-xx, avg/median time}
-#
-# Topic: Example
-#
-#	(start example)
-#   DELETE http://localhost/gdc/account/login/200
-#   Request
-#   Response
-#   HEAD: 204 No Content
-#   
-#   DELETE http://localhost/gdc/account/login/404
-#   Request
-#   Response
-#   HEAD: 404 Not Found
-#   BODY: Login id 404 was not found.
-#	(end)
 #
 
 ###############################################################################
@@ -144,7 +110,7 @@
 #
 #	Structure with data identifying the user
 #
-# Topic: Specification
+# Section: Specification
 #
 #   (start code)
 #    PostUserLogin = < postUserLogin : {
@@ -157,7 +123,7 @@
 #    }>
 #   (end)
 #
-# Topic: Description
+# Section: Description
 #
 #	Login and password of users.
 #	Validity of a token is specified by remember. If 1 (true) than generated SST will be valid for a very long time (typically one year).
@@ -173,7 +139,7 @@
 #
 #	Structure with data for public access.
 #
-# Topic: Specification
+# Section: Specification
 #
 #   (start code)
 #    PublicAccess = < publicAccess : {
@@ -181,7 +147,7 @@
 #    }>
 #   (end)
 #
-# Topic: Example login by publicAccessCode
+# Section: Example login by publicAccessCode
 #   POST http://localhost/gdc/account/login/
 #   Request
 #   BODY: {"publicAccess":{"secret":"XYZ"}}
@@ -192,7 +158,7 @@
 #
 #	Returned structure after successful login.
 #
-# Topic: Specification
+# Section: Specification
 #
 #   (start code)
 #   UserLogin = < userLogin : {
@@ -202,7 +168,7 @@
 #   }>
 #   (end)
 #
-# Topic: Description
+# Section: Description
 #
 #	State and profile are URI to resoure that provide info about user.
 #
@@ -211,7 +177,7 @@
 #
 #	Returned structure after successful login unverified user.
 #
-# Topic: Specification
+# Section: Specification
 #
 #   (start code)
 #   ResendRegistration = <resendRegistration : { 
@@ -220,6 +186,43 @@
 #   }>
 #   (end)
 #
-# Topic: Description
+# Section: Description
 #      uri where you have to post rsr_token for mail resending
+#
+
+###############################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/account/login
+#	Request
+#	BODY: {"postUserLogin":{"password":"my_passsword","login":"bad@example.com","remember":"1","vefify_level":"0"}}
+#	Response
+#	HEAD: 400 Bad Request
+#   (end)
+# 
+#   (start example)
+#	POST /gdc/account/login
+#	Request
+#	BODY: {"postUserLogin":{"password":"my_passsword","login":"ok@example.com","remember":"0"}}
+#	Response
+#	HEAD: 200 OK
+#	BODY: {"userLogin":{"profile":"/gdc/account/profile/1234567890","state":"/gdc/account/login/1234567890"}}
+#   (end)
+#
+#
+#   (start example)
+#	DELETE /gdc/account/login/200
+#	Request
+#	Response
+#	HEAD: 204 No Content
+#   (end)
+#
+#   (start example)
+#	DELETE /gdc/account/login/404
+#	Request
+#	Response
+#	HEAD: 404 Not Found
+#	BODY: Login id 404 was not found.
+#   (end)
 #

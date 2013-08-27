@@ -6,19 +6,27 @@
 
 ###############################################################################
 # Group: Description
-#     enables user registration and confirmation of registration. This resource does not require authentication.
+#
+#   Resource for user registration and confirmation of registration. 
+#   This resource does not require authentication.
+#
+#   __Related resources:__
+#
+#   - /gdc/account
+#   - /gdc/account/invitations
+#
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /account/registration
+#   header: /gdc/account/registration
 #       registers user.
 #
 #       POST - <PostRegistration>
 #            - (201 Created) <RegistrationCreated> 
 #            - (400 Bad request) <WrongRegistration>
 #
-#   header: /account/registration/$uniquestring
+#   header: /gdc/account/registration/<uniquestring>
 #       confirms user registration.
 #
 #       GET - *
@@ -116,7 +124,7 @@
 #   header: Correct registration
 #
 #   (start example)
-#       POST http://localhost/gdc/account/registration/
+#       POST http://localhost/gdc/account/registration
 #       Request
 #       BODY: {"postRegistration":{"verifyCaptcha":"STRING","country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"captcha":"STRING","verifyPassword":"new_password","login":"my@email.com","password":"new_password","lastName":"Lagopus","phoneNumber":"123456789"}}
 #       Response
@@ -126,16 +134,16 @@
 #   header: Wrong registration
 #
 #   (start example)
-#       POST http://localhost/gdc/account/registration/
-#       Request
-#       BODY: {"postRegistration":{"verifyCaptcha":"STRING","country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"captcha":"STRING","verifyPassword":"new__password","login":"my@email@com","password":"new_password","lastName":"Lagopus","phoneNumber":"123456789"}}
-#       Response
-#       HEAD: 200 Ok
-#       BODY:
-#       --- 
-#       wrongRegistration: 
-#         login: my@email@com
-#         password: 0
+#	POST http://localhost/gdc/account/registration
+#	Request
+#	BODY: {"postRegistration":{"verifyCaptcha":"STRING","country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"captcha":"STRING","verifyPassword":"new__password","login":"my@email@com","password":"new_password","lastName":"Lagopus","phoneNumber":"123456789"}}
+#	Response
+#	HEAD: 200 Ok
+#	BODY:
+#	--- 
+#	wrongRegistration: 
+#	  login: my@email@com
+#	  password: 0
 #   (end)
 #       
 #   header: Invalid confirmation

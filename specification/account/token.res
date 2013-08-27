@@ -5,31 +5,30 @@
 #
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#   Generate temporary token, that is used as authorization cache.
+#   Generate temporary token that is used as authorization cache.
 #
-#   https://wiki.gooddata.com/bin/view/Doc/GdcDocumentationAuthServer
+#   __Related resources:__
+#
+#   - /gdc/account/login
 #
 
 ###############################################################################
-# Section: Resources
-###############################################################################
-
-###############################################################################
+# Group: Resource(s)
+#
+#
 # Resource: token
 #
 #	Generate temporary token from user and validity. Need SST validation.
 #
 # Topic: Synopsis
 #
-#>	/account/token
+#	header: /gdc/account/token
 #
-#   (start example)
 #    GET - * 
-#      -> OK
+#      -> 200 OK
 #      -> (404 Not found) #SST token isn't valid
-#	(end)
 #
 #
 # Topic: Flags
@@ -53,17 +52,7 @@
 #
 #	{stable-xx, avg/median time}
 #
-# Topic: Example
-#
-#   (start example)
-#    GET http://localhost/gdc/account/token
-#    Response return 
-#    HEAD: 404 Not Found
-#    BODY: Token doesn't exist
-#    or 
-#    HEAD: 200 OK
-#   (end)
-#
+
 ###############################################################################
 # Structure: UserToken
 #

@@ -7,14 +7,14 @@
 ###############################################################################
 # Group: Description
 #
-# for manipulation with user's profile.
+#   Resources for manipulation with user's profile.
 #
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /account/profile
+#   header: /gdc/account/profile
 #       creating a new profile by posting registration profile uri, not auth resource 
 #
 #
@@ -27,7 +27,7 @@
 #       - (201 Created) <Uri>
 #       - (400 Bad request) <WrongRegistration>
 #
-#   header: /account/domains/$domain/users
+#   header: /gdc/account/domains/<domain>/users
 #       creating a new profile by posting AccountSetting, authenticated resource 
 #
 #       POST - <AccountSetting>
@@ -35,12 +35,12 @@
 #       - (400 Bad request)  
 #       - (201 Created) <Uri>    % an uri of newly created user in format /account/profile/$user
 #
-#   header: /account/domains/$domain/users?offset=<offset>?limit=<limit>
+#   header: /gdc/account/domains/<domain>/users?offset=<offset>?limit=<limit>
 #       listing of domain users
 #       GET
 #       - (200 OK) AccountSettings
 #
-#   header: /account/profile/$uid
+#   header: /gdc/account/profile/<user-id>
 #       get and modify accout information, auth resource 
 #  
 #     GET - * 
@@ -57,21 +57,21 @@
 #            - (403 Forbidden)
 #            - (404 Not found)
 #
-#   header: /account/profile/$uid/projects
+#   header: /gdc/account/profile/<user-id>/projects
 #       Shows projects assigned to account
 #  
 #       GET   
 #           - (200 Ok) <Projects>
 #           - (404 Not found)  % user id not found
 #
-#   header: /account/profile/$uid/invitations
+#   header: /gdc/account/profile/<user-id>/invitations
 #       Projects invitations for user
 #  
 #       GET 
 #           - (200 Ok) <Invitations>
 #           - (404 Not found) % User or invitation not found
 #
-#   header: /account/profile/$user_id/settings
+#   header: /gdc/account/profile/<user-id>/settings
 #       Profile settings
 #
 #       PUT - ProfileSetting
@@ -83,7 +83,7 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /account/profile/$uid
+#   header: /gdc/account/profile/<user-id>
 #     GET - canSeeOtherUserDetails
 #     PUT - profile ownership
 #     DELETE - profile ownership
@@ -155,7 +155,7 @@
 # SsoProvider = 'CAPGEMINI' | 'SALESFORCE' | 'PARDOT' | 'ZINCH' | 'TAKADU' | 'ADVANTIX'
 #
 #
-# header: /account/domain/$domain/user
+# header: /gdc/account/domain/<domain>/user
 #       creating a new profile by posting AccountSetting, authenticated resource
 #
 #       POST - <AccountSetting>
@@ -223,63 +223,66 @@
 #
 #   header: get account setting.
 #   (start example)
-#	POST http://localhost/gdc/account/profile
-#	BODY: { "invitationProfile" : { "profile" : { "login": "jiri.zaloudek@gooddata.com", "firstName": "jiri", "lastName": "zaloudek", "licence":1, "verifyPassword":"new_password","password":"new_password" }, "invitation": "tc1XfUaFT2zMwHWyODkNmMdYUpOPTAbw"  }}	
+#	POST /gdc/account/profile
+#	BODY: {"invitationProfile":{"profile":{"login":"some@example.com","firstName":"George","lastName":"White","licence":"1","verifyPassword":"new_password","password":"new_password"},"invitation":"tc1XfUaFT2zMwHWyODkNmMdYUpOPTAbw"}}
 #	Response
 #	HEAD: 201 Created
 #   (end)
 #
 #   header: get account setting.
 #   (start example)
-#     GET http://localhost/gdc/account/login/876ec68f5630b38de65852ed5d6236ff
-#     Request
-#     Response
-#     HEAD: 200 OK
-#     BODY:
-#     --- 
-#     accountSetting: 
-#       country: UK
-#       firstName: Vulpes
-#       lastName: Lagopus
-#       login: my@email.com
-#       phoneNumber: 123456789
-#       timezone: 100
-#     
-#     GET http://localhost/gdc/account/login/876ec68f5630b38de65852ed5d6236ff
-#     Request
-#     Response
-#     HEAD: 404 Not Found
-#     BODY: Profile id 404 doesn't exist
+#	GET /gdc/account/login/876ec68f5630b38de65852ed5d6236ff
+#	Request
+#	Response
+#	HEAD: 200 OK
+#	BODY:
+#	--- 
+#	accountSetting: 
+#	  country: UK
+#	  firstName: Vulpes
+#	  lastName: Lagopus
+#	  login: my@email.com
+#	  phoneNumber: 123456789
+#	  timezone: 100
+#   (end)
+#
+#   (start example) 
+#	GET /gdc/account/login/876ec68f5630b38de65852ed5d6236ff
+#	Request
+#	Response
+#	HEAD: 404 Not Found
+#	BODY: Profile id 404 doesn't exist
 #   (end)
 #     
 #   header: update account setting.
 #   (start example)
-#     PUT http://localhost/gdc/account/login/876ec68f5630b38de65852ed5d6236ff
-#     Request
-#     BODY: {"accountSetting":{"country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"verifyPassword":"new_password","login":"my@email.com","password":"new_password","old_password":"old_password","lastName":"Lagopus","phoneNumber":"123456789"}}
-#     HEAD: 200 OK
-#     BODY:
-#     --- 
-#     accountSetting: 
-#       country: UK
-#       firstName: Vulpes
-#       lastName: Lagopus
-#       login: my@email.com
-#       phoneNumber: 123456789
-#       timezone: 100
-#     
-#     
-#     PUT http://localhost/gdc/account/login/00000000000000FF0000000000000000
-#     Request
-#     BODY: {"accountSetting":{"country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"verifyPassword":"new_password","login":"my@email.com","password":"new_password","old_password":"old_password","lastName":"Lagopus","phoneNumber":"123456789"}}
-#     Response
-#     HEAD: 404 Not Found
-#     BODY: Profile id 404 doesn't exist
+#	PUT /gdc/account/login/876ec68f5630b38de65852ed5d6236ff
+#	Request
+#	BODY: {"accountSetting":{"country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"verifyPassword":"new_password","login":"my@email.com","password":"new_password","old_password":"old_password","lastName":"Lagopus","phoneNumber":"123456789"}}
+#	HEAD: 200 OK
+#	BODY:
+#	--- 
+#	accountSetting: 
+#	  country: UK
+#	  firstName: Vulpes
+#	  lastName: Lagopus
+#	  login: my@email.com
+#	  phoneNumber: 123456789
+#	  timezone: 100
+#   (end)
+#
+#   (start example)
+#	PUT /gdc/account/login/00000000000000FF0000000000000000
+#	Request
+#	BODY: {"accountSetting":{"country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"verifyPassword":"new_password","login":"my@email.com","password":"new_password","old_password":"old_password","lastName":"Lagopus","phoneNumber":"123456789"}}
+#	Response
+#	HEAD: 404 Not Found
+#	BODY: Profile id 404 doesn't exist
 #   (end)
 #
 #   header: mockups for /account/profile/<user>/projects
 #   (start example)
-#	GET http://localhost/gdc/account/profile/876ec68f5630b38de65852ed5d6236ff/projects
+#	GET /gdc/account/profile/876ec68f5630b38de65852ed5d6236ff/projects
 #	Response
 #	HEAD: 200 OK
 #	BODY: 
@@ -290,9 +293,9 @@
 #	      content: 
 #	        state: ENABLED
 #	      links: 
-#	        invitations: /gdc/projects/FoodMartDemo/invitations
-#	        self: /gdc/projects/FoodMartDemo
-#	        users: /gdc/projects/FoodMartDemo/users
+#	        invitations: /gdc/projects/<project>/invitations
+#	        self: /gdc/projects/<project>
+#	        users: /gdc/projects/<project>/users
 #	      meta: 
 #	        author: 
 #	          name: ~
@@ -301,14 +304,14 @@
 #	          name: ~
 #	          uri: /gdc/account/profile
 #	        created: 2008-09-02 16:30:36
-#	        summary: FoodMartDemo
-#	        title: FoodMartDemo
+#	        summary: Project Description
+#	        title: Project Title
 #	        updated: 0000-00-00 00:00:00
 #   (end)
 #
 #   header: mockups for /account/profile/<user>/invitations
 #   (start example)
-#	GET http://localhost/gdc/account/profile/2/invitations
+#	GET /gdc/account/profile/2/invitations
 #	Response
 #	HEAD: 200 OK
 #	BODY: 
@@ -317,14 +320,14 @@
 #	  - 
 #	    invitation: 
 #	      content: 
-#	        email: jiri.zaloudek9@gooddata.com
+#	        email: doe@example.com
 #	        firstname: ~
 #	        lastname: ~
 #	        phonenumber: ~
 #	        status: WAITING
 #	      links: 
-#	        project: /gdc/projects/FoodMartDemo
-#	        self: /gdc/projects/FoodMartDemo/invitations/11
+#	        project: /gdc/projects/<project>
+#	        self: /gdc/projects/<project>/invitations/11
 #	      meta: 
 #	        author: 
 #	          name: John Doe
@@ -339,14 +342,14 @@
 #	  - 
 #	    invitation: 
 #	      content: 
-#	        email: jiri.zaloudek4@gooddata.com
+#	        email: doe2@example.com
 #	        firstname: ~
 #	        lastname: ~
 #	        phonenumber: ~
 #	        status: WAITING
 #	      links: 
-#	        project: /gdc/projects/FoodMartDemo
-#	        self: /gdc/projects/FoodMartDemo/invitations/7
+#	        project: /gdc/projects/<project>
+#	        self: /gdc/projects/<project>/invitations/7
 #	      meta: 
 #	        author: 
 #	          name: John Doe

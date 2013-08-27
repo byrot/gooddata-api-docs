@@ -7,14 +7,18 @@
 ###############################################################################
 # Group: Description
 #
-#   Not auth resource for getting and refusing invitations.
+#   Resource for getting and refusing invitations.
 #
+#   __Related resources:__
+#
+#   - /gdc/account
+#   - /gdc/account/registration
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /gdc/account/invitations/$uniquestring
+#   header: /gdc/account/invitations/<uniquestring>
 #           Invitations users to project
 #  
 #           GET -  
@@ -95,32 +99,32 @@
 ###############################################################################
 # Group: Mock-up
 #
-#	
+#
 #   header: Get invitation by uniquestring
 #   (start example)
-#	GET http://localhost/gdc/account/invitations/GkBcecZRenOL5OT_R2T_KAnL8ekg_Msw
+#	GET /gdc/account/invitations/GkBcecZRenOL5OT_R2T_KAnL8ekg_Msw
 #	Request
 #	Response
 #	HEAD: 200 OK
-#	BODY: 
-#	--- 
-#	invitation: 
-#	  content: 
-#	    email: jiri.zaloudek@gooddata.com
-#	    firstname: Jiri
-#	    lastname: Zaloudek
+#	BODY:
+#	---
+#	invitation:
+#	  content:
+#	    email: phantom@example.com
+#	    firstname: George
+#	    lastname: Phantom
 #	    phonenumber: ~
 #	    status: WAITING
-#	  links: 
-#	    project: /gdc/projects/FoodMartDemo
-#	    self: /gdc/projects/FoodMartDemo/invitations/20
-#	  meta: 
-#	    author: 
+#	  links:
+#	    project: /gdc/projects/<project>
+#	    self: /gdc/projects/<project>/invitations/20
+#	  meta:
+#	    author:
 #	      firstName: John
 #	      lastName: Doe
 #	      email: john.doe@foodz.com
 #	      self: /gdc/account/profile/1
-#	    contributor: 
+#	    contributor:
 #	      firstName: John
 #	      lastName: Doe
 #	      email: john.doe@foodz.com
@@ -129,16 +133,15 @@
 #	    modified: 0000-00-00 00:00:00
 #	    summary: ~
 #	    title: ~
-#   (end)
-#	
+#	   (end)
+#
 #   header: Refuse invitation
 #   (start example)
-#	POST http://localhost/gdc/account/invitations/GkBcecZRenOL5OT_R2T_KAnL8ekg_Msw
+#	POST /gdc/account/invitations/GkBcecZRenOL5OT_R2T_KAnL8ekg_Msw
 #	Request
 #	BODY: {"invitation":{"content":{"status":"REFUSED"}}}
 #	Response
 #	HEAD: 200 OK
-#	BODY: ""
 #   (end)
 #
 

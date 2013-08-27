@@ -7,31 +7,53 @@
 ###############################################################################
 # Group: Description
 #
-# enables retriving new password.
+#   Resource to set new password if a user forgets the old one.
 #
+#   __Related resources:__
+#
+#   - /gdc/account
+#   - /gdc/account/login
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /account/lostpassword
+#   header: /gdc/account/lostpassword
 #       Ask for new password. Not auth resource. 
 #  
 #       POST <PostLostPassword>
-#       -  -> (204 No content)
-#       -  -> (400 Bad request)
+#         -> (204 No content)
+#         -> (400 Bad request)
 #
-#   header: /account/lostpassword/$uniquestring
+#   header: /gdc/account/lostpassword/<uniquestring>
 #   
 #       GET
-#       -   -> (200 OK) <LostPasswordRequest>
-#       -   -> (404 Not found)
+#          -> (200 OK) <LostPasswordRequest>
+#          -> (404 Not found)
 #
 #       POST <PostSetNewPassword>
 #
-#       -   -> (200 OK)
-#       -   -> (404 Not found)
-#       -   -> (400 Bad request) <WrongNewPassword>
+#          -> (200 OK)
+#          -> (404 Not found)
+#          -> (400 Bad request) <WrongNewPassword>
+
+###############################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/account/lostpassword
+#	HEAD: {"login":"user@example.com"}
+#	Response
+#	HEAD: 204
+#   (end)
+#
+#   (start example)
+#	POST /gdc/account/lostpassword/452345wer23as
+#	BODY: {"postSetNewPassword":{"password":"new_pass","verifyPassword":"new_pass"}}
+#	Response
+#	HEAD: 200
+#   (end)
+#
 
 ###############################################################################
 # Group: Data Structures
