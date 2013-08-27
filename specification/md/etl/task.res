@@ -11,10 +11,11 @@
 #
 #   __Related resources:__
 #
-#   - /gdc/md/&lt;project&gt;/etl/mode
-#   - /gdc/md/&lt;project&gt;/etl/pull
-#   - /gdc/md/&lt;project&gt;/ldm/dataloadinterface
-#   - /gdc/md/&lt;project&gt;/ldm/singleloadinterface
+#   - /gdc/md/<project>/etl/mode
+#   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/ldm/dataloadinterface
+#   - /gdc/md/<project>/ldm/singleloadinterface
+#   - /gdc/md/<project>/data/sets
 #
 
 ###############################################################################

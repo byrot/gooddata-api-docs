@@ -14,8 +14,8 @@
 #
 #   __Related resources:__
 #
-#   - /gdc/md/<project>/etl
 #   - /gdc/md/<project>/etl/pull
+#   - /gdc/md/<project>/data/sets
 #
 
 ###############################################################################
