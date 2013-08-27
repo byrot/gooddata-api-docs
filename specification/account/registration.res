@@ -13,7 +13,7 @@
 #   __Related resources:__
 #
 #   - /gdc/account
-#   - /gdc/account/invitations
+#   - /gdc/projects/<project>/invitations/<invitation>
 #
 
 ###############################################################################

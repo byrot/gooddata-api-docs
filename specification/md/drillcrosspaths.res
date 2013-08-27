@@ -31,12 +31,13 @@
 #
 #   header: /gdc/md/<project>/drillcrosspaths
 #
-#     POST 
-#     - [URISTRING] -> <DrillCrossPath>
+#     POST - [URISTRING]
+#		-> 200 <DrillCrossPath>
 #
 #   header: /gdc/md/<project>/drillcrosspaths/<id>
 #
-#      GET - * -> <DrillCrossPath>
+#      GET - *
+#		-> 200 <DrillCrossPath>
 #
 
 ###############################################################################

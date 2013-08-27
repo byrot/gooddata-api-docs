@@ -26,12 +26,14 @@
 #   header: /gdc/md/<project>/availablefacts
 #           /gdc/md/(\w+)/availablefacts
 #  
-#          POST - [ URISTRING ] -> <Entries>
+#          POST - [ URISTRING ]
+#		-> 200 <Entries>
 #
 #   header: /gdc/md/<project>/availablefacts/<id>
 #           /gdc/md/(\w+)/availablefacts/(\w+)
 #  
-#           GET * -> <Entries>
+#           GET - *
+#		-> 200 <Entries>
 #
 ###############################################################################
 # Group: Mock-up

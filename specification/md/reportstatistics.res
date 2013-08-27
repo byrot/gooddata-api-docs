@@ -19,13 +19,16 @@
 #   header: /gdc/md/<project>/reportstatistics
 #           /gdc/md/(\w+)/reportstatistics
 #
-#           POST - <RepoStatisticsRequest> -> (200 ok) <ReportStatistics>
-#           GET  - * -> <About>
+#           POST - <RepoStatisticsRequest>
+#		-> (200 ok) <ReportStatistics>
+#           GET  - *
+#		-> <About>
 #  
 #   header: /gdc/md/<project>/reportstatistics/id
 #           /gdc/md/<project>/reportstatistics/(\w+)
 #           
-#           GET - * - > 200 ReportStatistics
+#           GET - *
+#		-> 200 ReportStatistics
 
 ###############################################################################
 # Group: Data Structures

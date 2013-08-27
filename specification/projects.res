@@ -36,8 +36,10 @@
 #   header: /gdc/projects
 #           Create Project
 #           
-#    POST - <Project> -> <Uri> (201 Created)
-#    GET  - * -> (200 Ok)
+#    POST - <Project>
+#		-> 201 <Uri>
+#    GET  - *
+#		-> 200
 #  
 
 ###############################################################################

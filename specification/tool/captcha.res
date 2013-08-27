@@ -7,14 +7,16 @@
 ###############################################################################
 # Group: Description
 #
-#       Ask for new password. Not auth resource.
+#   GoodData captcha service resource.
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /tool/captcha
-#         GET - * -> (200 OK) Captcha
+#   header: /gdc/tool/captcha
+#         GET - *
+#		-> (200 OK) Captcha
+#
 
 ###############################################################################
 # Group: Data Structures

@@ -16,22 +16,25 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/obj/<id>/elements
-#           /md/(\w+)/obj/(\w+)/elements
+#   header: /gdc/md/<project>/obj/<id>/elements
+#           /gdc/md/(\w+)/obj/(\w+)/elements
 #
-#           POST - <ElementsDispFormReq> -> <AttributeElements>
+#           POST - <ElementsDispFormReq>
+#		-> 200 <AttributeElements>
 #
-#   header: /md/<project>/obj/<ADFid>/elements?uris=LIST_OF_URIS&[order=asc|desc]
+#   header: /gdc/md/<project>/obj/<ADFid>/elements?uris=LIST_OF_URIS&[order=asc|desc]
 #           LIST_OF_URIS /gdc/md/FoodMartDemo/obj/<AttrID>/elements?id=2006;/gdc/md/FoodMartDemo/obj/<AttrID>/elements?id=2007
 #						 DO NOT FORGET to escape URI parameters (uris=/gdc/md/FoodMartDemo/obj/71/elements%3Fid%3D2006;/gdc/md/FoodMartDemo/obj/71/elements%3Fid%3D2007)
 #
-#           GET - NULL -> <AttributeElements>
+#           GET - NULL
+#		-> 200 <AttributeElements>
 #
-#   header: /md/<project>/obj/<ADFid>/elements?id=INT
+#   header: /gdc/md/<project>/obj/<ADFid>/elements?id=INT
 #
-#           GET - NULL -> <AttributeElements>
+#           GET - NULL
+#		-> 200 <AttributeElements>
 #
-#   header: /md/<project>/obj/<AttrId>/elements
+#   /gdc/md/<project>/obj/<AttrId>/elements
 #
 #         Not implemented yet -  https://bugzilla.gooddata.com/show_bug.cgi?id=1408 
 

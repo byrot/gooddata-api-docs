@@ -18,9 +18,11 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/log/events
+#   header: /gdc/md/<project>/log/events
 #
-#       GET - * -> <Events>
+#       GET - *
+#		-> 200 <Events>
+#
 
 ###############################################################################
 # Group: Data Structures

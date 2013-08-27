@@ -26,7 +26,8 @@
 #
 #   header: /gdc/md/<project>/maqlvalidator
 #
-#        POST - <MaqlDef> -> <ValidationResult>
+#        POST - <MaqlDef>
+#		-> 200 <ValidationResult>
 #  
 
 ###############################################################################

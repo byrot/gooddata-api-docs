@@ -108,7 +108,7 @@
 #     - (200 Ok) <About>
 #
 #   POST - <ImportProject>
-#     - URI % etl-task uri
+#     - 200 URI % etl-task uri
 #     - (400 Bad request) ErrorStruct
 #
 # Topic: Flags

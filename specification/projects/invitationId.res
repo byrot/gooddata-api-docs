@@ -14,15 +14,17 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/invitations/<invitation>
-#           GET - * -> (200 Ok) Invitation
+#   header: /gdc/projects/<project>/invitations/<invitation>
+#           GET - *
+#		-> (200 Ok) Invitation
 #
 #           POST - <Invitation>
-#           - (200 Ok)
-#           - (404 Not found) % Project or invitation not found
+#		-> (200 Ok)
+#		-> (404 Not found) % Project or invitation not found
 #
-#           DELETE - * -> (204 No Content)
-#           - (404 Not found) % Project or invitation not found
+#           DELETE - *
+#		-> (204 No Content)
+#		- (404 Not found) % Project or invitation not found
 #
 
 ###############################################################################
@@ -38,7 +40,7 @@
 #
 #   header: Get invitation by id
 #   (start example)
-#	GET https://secure.gooddata.com/gdc/projects/ProjectId/invitations/15
+#	GET https://secure.gooddata.com/gdc/projects/<project>/invitations/15
 #	Response
 #	HEAD: 200 OK
 #	BODY:
@@ -51,8 +53,8 @@
 #	    phonenumber: ~
 #	    status: WAITING
 #	  links:
-#	    project: /gdc/projects/ProjectId
-#	    self: /gdc/projects/ProjectId/invitations/20
+#	    project: /gdc/projects/<project>
+#	    self: /gdc/projects/<project>/invitations/20
 #	  meta:
 #	    author:
 #	      name: John Doe
@@ -68,14 +70,14 @@
 #	
 #   header: Delete invitation (set as CANCELED)
 #   (start example)
-#	DELETE https://secure.gooddata.com/gdc/projects/ProjectId/invitations/3
+#	DELETE https://secure.gooddata.com/gdc/projects/<project>/invitations/3
 #	Response
 #	HEAD: 204 No Content
 #   (end)
 #	
 #   header: Update invitation
 #   (start example)
-#	POST https://secure.gooddata.com/gdc/projects/ProjectId/invitations/3
+#	POST https://secure.gooddata.com/gdc/projects/<project>/invitations/3
 #	BODY:
 #	---
 #	invitation:

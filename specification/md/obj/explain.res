@@ -15,10 +15,11 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/obj/<id>/explain[?aqe=SLDM|EAST|QT]
-#           /md/(\w+)/obj/(\w+)/explain
+#   header: /gdc/md/<project>/obj/<id>/explain[?aqe=SLDM|EAST|QT]
+#           /gdc/md/(\w+)/obj/(\w+)/explain
 #
-#           GET - NULL -> Explain
+#           GET - NULL
+#		-> 200 Explain
 #
 
 ###############################################################################

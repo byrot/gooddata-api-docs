@@ -17,18 +17,25 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /availableelements
-#       POST -  <AvailableElementsRequest> -> 201 (Location: URISTRING)   % created result uri
-#       GET  -  * -> <About>
+#   header: /gdc/availableelements
+#       POST -  <AvailableElementsRequest>
+#		-> 201 (Location: URISTRING)   % created result uri
+#       GET  -  *
+#		-> <About>
 #  
-#   header: /availableelements/(\w+)
-#       DELETE - 204 NULL % execution canceled
+#   header: /gdc/availableelements/(\w+)
+#       DELETE
+#		-> 204 NULL % execution canceled
 #
-#   header: /availableelements/(\w+)?attribute=URISTRING(&count=INT(&offset=INT)?)?   % results uri
-#       GET - * - > 200 <AvailableElements>
-#       GET - * - > 202 Refresh    % accepted and still processing task
-#       GET - * - > 204  % no content
-#       GET - * - > 410  % execution gone (other user cancelled execution)
+#   header: /gdc/availableelements/(\w+)?attribute=URISTRING(&count=INT(&offset=INT)?)?   % results uri
+#       GET - *
+#		-> 200 <AvailableElements>
+#       GET - *
+#		-> 202 Refresh    % accepted and still processing task
+#       GET - *
+#		-> 204  % no content
+#       GET - *
+#		-> 410  % execution gone (other user cancelled execution)
 
 ###############################################################################
 # Group: Security Consideration

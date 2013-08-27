@@ -26,12 +26,14 @@
 #   header: /gdc/md/<project>/availablemetrics
 #           /gdc/md/(\w+)/availablemetrics
 #  
-#          POST - [ URISTRING ] -> <Entries>
+#          POST - [ URISTRING ]
+#		-> 200 <Entries>
 #
 #   header: /gdc/md/<project>/availablemetrics/<id>
 #           /gdc/md/(\w+)/availablemetrics/(\w+)
 #  
-#           GET * -> <Entries>
+#           GET *
+#		-> 200 <Entries>
 #
 
 ###############################################################################

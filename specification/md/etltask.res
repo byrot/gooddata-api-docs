@@ -28,7 +28,9 @@
 #	parameters:
 #		none
 #
-#	GET  * -> TaskState
+#	GET - *
+#		-> 200 TaskState
+#
 #   (start code)
 #   TaskState = < taskState : {
 #	status : 'WAIT'|'READY'|'RUNNING'|'OK'|'ERROR'|'PREPARING',

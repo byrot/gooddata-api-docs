@@ -28,7 +28,8 @@
 #   header: /gdc/md/<project>/obj
 #           /gdc/md/(\w+)/obj
 #
-#       POST - Object -> URI    % Creates new object
+#       POST - Object
+#		-> 200 URI    % Creates new object
 #
 #           /gdc/md/(\w+)/obj?createAndGet=true
 #
@@ -38,7 +39,8 @@
 # header: /gdc/md/<project>/obj/<id>(?mode=MODE)
 #         /gdc/md/(\w+)/obj/(\w+)
 #
-#	GET - * -> Object
+#	GET - *
+#		-> 200 Object
 #
 # MODE : 'edit'|'raw'
 #  % edit - restricted to mime type application/xhtml, generate gpUI
@@ -48,10 +50,15 @@
 # header: /gdc/md/<project>/obj/<id>
 #         /gdc/md/(\w+)/obj/(\w+)
 #
-#           GET - NULL -> Object    % Get current object representation
-#           PUT - Object -> URI     % Replace object (URI is uri to self)
-#           POST - Object -> URI    % Merge current object with sent Object (URI is uri to self)
-#           DELETE - NULL -> (204 No Content) % Delete object
+#           GET - NULL
+#		-> 200 Object    % Get current object representation
+#           PUT - Object
+#		-> 200 URI     % Replace object (URI is uri to self)
+#           POST - Object
+#		-> 200 URI    % Merge current object with sent Object (URI is uri to self)
+#           DELETE - NULL
+#		-> (204 No Content) % Delete object
+#
 
 ###############################################################################
 # Group: Security Consideration

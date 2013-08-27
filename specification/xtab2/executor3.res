@@ -15,7 +15,7 @@
 #
 #   __Related resources:__
 #
-#   - /gdc/md/<project>/object
+#   - /gdc/md/<project>/obj
 #   - /gdc/md/<project>/dataResult
 #
 

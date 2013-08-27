@@ -6,13 +6,13 @@
 # Tasks public resources.
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-#   Tasks public resources.
+#   Resources to monitor asynchronous tasks.
 #
 
 ###############################################################################
-# Section: Resources
+# Group: Resource(s)
 ###############################################################################
 
 ###############################################################################
@@ -22,9 +22,9 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/tasks
+#   header: /gdc/md/<project>/tasks
 #
-#   GET *
+#   GET - *
 #     - (200 Ok) <About>
 #
 
@@ -35,9 +35,9 @@
 #
 # Topic: Synopsis
 #
-#> /md/<project>/tasks/<taskid>/status
+#   header: /gdc/md/<project>/tasks/<task-id>/status
 #
-#   GET *
+#   GET - *
 #     - (202 Accepted) <WTaskStatus> if status is RUNNING
 #     - (200 Ok) <WTaskStatus> unless status is RUNNING
 #     - (404 Not found) - % task not found
@@ -55,7 +55,7 @@
 #
 
 ###############################################################################
-# Section: Data Structures
+# Group: Data Structures
 ###############################################################################
 
 ###############################################################################
@@ -79,7 +79,7 @@
 #
 
 ################################################################################
-# Section: Info
+# Group: Info
 ################################################################################
 #
 # About: Owner(s)

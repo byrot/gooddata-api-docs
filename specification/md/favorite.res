@@ -24,14 +24,18 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/favorite
+#   header: /gdc/md/<project>/favorite
 #  
-#       GET - * -> <About>
+#       GET - *
+#		-> 200 <About>
 #  
-#   header: /md/<project>/favorite/<id>
+#   header: /gdc/md/<project>/favorite/<id>
 #  
-#       GET - * -> <Favorite>
-#       PUT - <Favorite> -> <Favorite> % returns state of favorite after PUT 
+#       GET - *
+#		-> 200 <Favorite>
+#       PUT - <Favorite>
+#		-> 200 <Favorite> % returns state of favorite after PUT 
+#
 
 ###############################################################################
 # Group: Mock-up

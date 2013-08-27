@@ -12,7 +12,7 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /projects/<project>/credentials/<type>
+#   header: /gdc/projects/<project>/credentials/<type>
 #        %the only allowed type is sfdc
 #        GET -
 #            - (200 Ok) <Credential>

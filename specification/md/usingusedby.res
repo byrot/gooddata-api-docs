@@ -6,15 +6,16 @@
 #	Resource returning dependency information about objects
 
 ###############################################################################
-# Topic: Description
+# Group: Description
 #
-# All resources in this documentation return persistent objects only.
+#   Resource to explore usage and dependencies across metadata objects.
 #
-#
+#   **THIS RESOURCE IS DEPRECATED!**
+#   Use usedby2 and using2 instead.
 #
 
 ###############################################################################
-# Section: Resources
+# Group: Resource(s)
 ###############################################################################
 
 ###############################################################################
@@ -24,23 +25,21 @@
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/using
+#	header: /gdc/md/<project>/using
 #
 #	parameters:
 #		none
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> 200 OK About
 #
-#	POST SelConstrain
-#	    -> OK Using
+#	POST - SelConstrain
+#	    -> 200 OK Using
 #	    % to post one object only
 #
-#	POST SelConstrains
-#	    -> OK UsingMult
+#	POST - SelConstrains
+#	    -> 200 OK UsingMult
 #	    % to post serie of objects
-#	(end)
 #
 # This resource can be used in two ways - either for getting one object dependencies or
 # for getting dependencies for serie of objects.
@@ -85,16 +84,10 @@
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/using/<id>
+#	header: /gdc/md/<project>/using/<id>
 #
-#	parameters:
-#		none
-#
-#
-#   (start example)
-#	GET *
-#		-> OK Using
-#	(end)
+#	GET - *
+#		-> 200 OK Using
 #
 # Topic: Flags
 #
@@ -138,23 +131,21 @@
 #
 # Topic: Synopsis
 #
-#>	/md/<project>/usedby
+#	header: /gdc/md/<project>/usedby
 #
 #	parameters:
 #		none
 #
-#   (start example)
-#	GET *
-#		-> OK About
+#	GET - *
+#		-> 200 OK About
 #
-#	POST SelConstrain
-#	    -> OK Using
+#	POST - SelConstrain
+#	    -> 200 OK Using
 #	    % to post one object only
 #
-#	POST SelConstrains
-#	    -> OK UsingMult
+#	POST - SelConstrains
+#	    -> 200 OK UsingMult
 #	    % to post serie of objects
-#	(end)
 #
 # This resource can be used in two ways - either for getting one object dependencies or
 # for getting dependencies for serie of objects.
@@ -200,15 +191,10 @@
 
 # Topic: Synopsis
 #
-#>	/md/<project>/usedby/<id>
+#	header: /gdc/md/<project>/usedby/<id>
 #
-#	parameters:
-#		none
-#
-#   (start example)
-#	GET *
-#		-> OK Using
-#	(end)
+#	GET - *
+#		-> 200 OK Using
 #
 # Topic: Flags
 #
