@@ -5,12 +5,22 @@
 #
 ############################################################################################################
 # Group: Description
-#        EventStore REST API
-# 
+#
+#   __GoodData EventStore maintenance resources__
+#
+#   It is possible to create or delete an EventStore instance, manage tasks, etc.
+#
+#   __Related resources:__
+#
+#   - [Introduction to EventStore](http://developer.gooddata.com/blog/The-Event-Store-Introduction)
+#   - [CloudConnect EventStore writer](http://developer.gooddata.com/cloudconnect/manual/es-writer.html)
+#   - [CloudConnect EventStore reader](http://developer.gooddata.com/cloudconnect/manual/es-reader.html)
+#
+
 ############################################################################################################
 # Group: Resource(s)
 #
-# header: /projects/<projectName>/eventStore/stores
+# header: /gdc/projects/<project>/eventStore/stores
 # 
 #   POST - <Store>                              % creates new es store
 #   - (201 Created) <URIResponse>             % es store resource created
@@ -22,7 +32,7 @@
 #   - (404 Not Found)                         % project doesn't exist
 # 
 # 
-# header: /projects/<projectName>/eventStore/stores/<storeId>
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>
 # 
 #   GET
 #   - (200 OK) <Store>                        % returns the given es store
@@ -33,14 +43,14 @@
 #   - (404 Not Found)                         % either the project or the es store doesn't exist
 # 
 #   
-# header: /projects/<projectName>/eventStore/stores/<storeId>/truncateTasks
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/truncateTasks
 #   
 #   POST - <TruncateTask>
 #   - (201 Created) <AsyncTask>             % creates new truncate task, returns a link to a resource to poll
 #   - (404 Not Found)                         % the project doesn't exist
 #
 # 
-# header: /projects/<projectName>/eventStore/stores/<storeId>/truncateTasks/<taskId>
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/truncateTasks/<taskId>
 #   
 #   GET
 #   - (202 Accepted)                          % the task is still running
@@ -48,14 +58,14 @@
 #   - (410 Gone) <Error>                      % the task has finished unsuccessfully
 # 
 # 
-# header: /projects/<projectName>/eventStore/stores/<storeId>/readTasks
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/readTasks
 #   
 #   POST - <ReadTask>
 #   - (201 Created) <AsyncTask>             % creates new read task, returns a link to a resource to poll
 #   - (404 Not Found)                         % the project doesn't exist
 # 
 # 
-# header: /projects/<projectName>/eventStore/stores/<storeId>/readTasks/<taskId>
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/readTasks/<taskId>
 #   
 #   GET
 #   - (202 Accepted)                          % the task is still running
@@ -63,14 +73,14 @@
 #   - (410 Gone) <Error>                      % the task has finished unsuccessfully
 # 
 # 
-# header: /projects/<projectName>/eventStore/stores/<storeId>/uploadTasks
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/uploadTasks
 #   
 #   POST - <UploadTask>
 #   - (201 Created) <AsyncTask>             % creates new upload task, returns a link to a resource to poll
 #   - (404 Not Found)                         % the project doesn't exist
 # 
 #
-# header: /projects/<projectName>/eventStore/stores/<storeId>/uploadTasks/<taskId>
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/uploadTasks/<taskId>
 #   
 #   GET
 #   - (202 Accepted)                          % the task is still running
@@ -78,14 +88,14 @@
 #   - (410 Gone) <Error>                      % the task has finished unsuccessfully
 #   
 # 
-# header: /gdc/projects/<projectName>/eventStore/stores/<storeId>/entities
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/entities
 # 
 #   GET
 #   - (200 OK) <ESEntities>                  % returns all existing ES entities for the given event store
-#   - (404 Not Found)                         % either the project or event store  <storeId> does not exist
+#   - (404 Not Found)                         % either the project or event store  <store-id> does not exist
 #
 #
-# header: /gdc/projects/<projectName>/eventStore/stores/<storeId>/entities/<entityName>
+# header: /gdc/projects/<project>/eventStore/stores/<store-id>/entities/<entityName>
 #
 #   GET
 #   - (200 OK) <ESEntity>                        % returns the given ES entity
@@ -193,6 +203,19 @@
 #   }
 #   (end)
 #
+
+#######################################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/projects/<project>/eventStore/stores
+#	BODY: {"store":{"storeId":"myestore"}}
+#	Response
+#	HEAD: 201
+#	BODY: {"uri":"/gdc/projects/<project>/dataload/eventstore/stores/myestore"}
+#   (end)
+#
+
 #######################################################################################
 # Copyright (C) 2007-2011, GoodData(R) Corporation. All rights reserved.
 #

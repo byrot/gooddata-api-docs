@@ -6,17 +6,17 @@
 ###############################################################################
 # Group: Description
 #
-#   Templating resource.
-#
+#   Project templating resource.
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /templates
+#   header: /gdc/templates
 #           
 #           
-#    GET  - * -> (200 Ok) TemplateList
+#    GET  - *
+#	-> (200 Ok) TemplateList
 #			Return list of sub-categories and templates in current level.
 #  
 
@@ -54,7 +54,7 @@
 #
 #   header: get templates on /gdc/templates resource
 #   (start example)
-#	GET http://localhost/gdc/templates
+#	GET /gdc/templates
 #	Response
 #	HEAD: 200 OK
 #	BODY: {"templateList":{"categories":[{"emails":"/gdc/templates/emails"}],"templates":[]}}
@@ -62,7 +62,7 @@
 #
 #   header: get template
 #   (start example)
-#	GET http://localhost/gdc/templates/emails/invitations/default
+#	GET /gdc/templates/emails/invitations/default
 #	Response
 #	HEAD: 200 OK
 #	BODY: {"template":{"text":"Hello!\n{firstname} {lastname} ({email}) is inviting you to join the project \"{projecttitle}\" hosted by GoodData, a new online service designed for people\nwho are passionate about performing data-driven analysis and delivering answers\nto real business problems.\n\nMessage from: {firstname} {lastname}\n{message}\n"}}

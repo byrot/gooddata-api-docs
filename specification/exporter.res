@@ -7,27 +7,35 @@
 ###############################################################################
 # Group: Description
 #
-#  exports execution result to PDF/XLS.
+#   Resource to export report results to PDF/XLS.
+#
+#   __Related resources:__
+#
+#   - /gdc/xtab2/executor3
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /exporter
+#   header: /gdc/exporter
 #   
-#         GET - * -> <About>
+#         GET - *
+#		-> 200 <About>
 #  
-#   header: /exporter/executor
+#   header: /gdc/exporter/executor
 #
-#       GET  - * -> XHTML interface for executor resource
-#       POST - <ResultReq> -> 201 (Location : URISTRING) % 1
+#       GET  - *
+#		-> 200 XHTML interface for executor resource
+#
+#       POST - <ResultReq>
+#		-> 201 (Location : URISTRING) % 1
 #           % run the execution. URISTRING is place of xtab_result
 #  
-#   header: /exporter/result
+#   header: /gdc/exporter/result
 #   
 #           GET - * -> <About>
 #  
-#   header: /exporter/result/Location
+#   header: /gdc/exporter/result/<result-id>
 #
 #        GET - generated document with corresponding MIME type
 #         - 200 generated document   %  Result has done, returns data.
@@ -41,10 +49,10 @@
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /exporter/executor
+#   header: /gdc/exporter/executor
 #      POST - project membership
 #  
-#   header: /exporter/result
+#   header: /gdc/exporter/result
 #      GET  - project membership
 #   
 

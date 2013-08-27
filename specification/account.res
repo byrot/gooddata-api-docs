@@ -6,10 +6,15 @@
 
 ###############################################################################
 # Group: Description
-#    Resource for getting users info   
-#    It accepts user profile uris and will return user profile details for them. 
-#    In details will be email, firstname and lastname.
 #
+#    __Resource providing information about user accounts.__
+#
+#    It accepts user profile uris and returns user profile details.
+#
+#    __Related resources:__
+#
+#    - /gdc/account/login
+#    - /gdc/account/registration
 #
 
 ###############################################################################
@@ -45,7 +50,14 @@
 ###############################################################################
 # Group: Mock-up
 #
-#	
+#   (start example)
+#	POST /gdc/account
+#	BODY: {"getUsersInfo":[{"uri":"/gdc/account/profile/b4ffbc9553"}]}
+#	Response
+#	HEAD: 200
+#	BODY: {"usersInfo":[{"userInfo":{"firstName":"GoodData","self":"/gdc/account/profile/b4ffbc9553","lastName":"Master"}}]}
+#   (end)
+#
 
 ################################################################################
 # Group: Info

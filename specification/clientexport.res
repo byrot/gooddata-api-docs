@@ -13,13 +13,13 @@
 ###############################################################################
 # Group: Resource(s)
 #
-#	header: /projects/<projectId>/clientexport
-#		POST - <ClientExportReq>
-#       - (202 Accepted) <AsyncTask>   % poll uri, structure defined in campaign-monitor
+#	header: /gdc/projects/<project>/clientexport
+#	POST - <ClientExportReq>
+#       	- (202 Accepted) <AsyncTask>   % poll uri, structure defined in campaign-monitor
 #		- (400 Bad request)           % illegal or banned URI
 #
-#	header: /projects/<projectId>/clientexport/<taskId>[?download=true]
-#		GET, HEAD
+#	header: /gdc/projects/<project>/clientexport/<task-id>[?download=true]
+#	GET - *
 #		- (200 Ok)              % generated document, if download flag is true, respose contains Content-Disposition header
 #		- (202 Accepted) <AsyncTask>  % export still in progress
 
@@ -43,20 +43,16 @@
 #
 #   header: Request dashboard export.
 #   (start example)
-#	POST https://secure.gooddata.com/gdc/projects/FoodMartDemo/clientexport
-#	BODY:{
-#       clientExport: {
-#           "url": "http://secure.gooddata.com/#s=/gdc/projects/FoodMartDemo|projectDashboardPage|/gdc/md/FoodMartDemo/obj/130001697|",
-#           "name": "Mighty dashboard"
-#   }
+#	POST /gdc/projects/<project>/clientexport
+#	BODY:{"clientExport":{"url": "http://secure.gooddata.com/#s=/gdc/projects/<project>|projectDashboardPage|/gdc/md/<project>/obj/130001697|","name":"Mighty dashboard"}}
 #	Response
 #	HEAD: 201 Created
-#   { "asyncTask": { "link": { "poll" : "/gdc/projects/FoodMartDemo/clientexport/06e9f945e6eb19d78b2dd8376d5edf73" }} }
+#	BODY: { "asyncTask": { "link": { "poll" : "/gdc/projects/<project>/clientexport/06e9f945e6eb19d78b2dd8376d5edf73" }} }
 #   (end)
 #
 #   header: Get task result.
 #   (start example)
-#   GET https://secure.gooddata.com/gdc/projects/FoodMartDemo/clientexport/06e9f945e6eb19d78b2dd8376d5edf73
+#   GET /gdc/projects/<project>/clientexport/06e9f945e6eb19d78b2dd8376d5edf73
 #   Response
 #   HEAD: 200 Ok
 #   (end)

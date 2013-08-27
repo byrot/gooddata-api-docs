@@ -7,15 +7,16 @@
 ###############################################################################
 # Group: Description
 #
-#  Release information (components, versions...)
+#   Release information (components, versions...)
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /releaseInfo
+#   header: /gdc/releaseInfo
 #   
-#         GET - * -> <Release>
+#         GET - *
+#		-> 200 <Release>
 #  
 
 ###############################################################################

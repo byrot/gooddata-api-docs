@@ -7,6 +7,8 @@
 ###############################################################################
 # Group: Description
 #
+#	**THIS RESOURCE IS DEPRECATED**
+#
 #       This resource is intended to return a list of elements for specified
 #       reportDefinition and attributeDisplayForm. Each element is presented as
 #       array of an element ID and a related display form. Elements are sorted
