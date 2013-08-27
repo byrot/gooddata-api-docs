@@ -165,7 +165,7 @@
 #
 #   header: Get users in probject
 #   (start example)
-#	GET https://secure.gooddata.com/gdc/projects/ProjectId/users
+#	GET /gdc/projects/<project>/users
 #	Response
 #	HEAD: 200 OK
 #	BODY:
@@ -179,7 +179,7 @@
 #	        lastname: Doe
 #	        phonenumber: 0
 #	        status: ENABLED
-#	        userRoles : [ /gdc/projects/ProjectId/roles/1 ]
+#	        userRoles : [ /gdc/projects/<project>/roles/1 ]
 #	      links:
 #	        invitations: /gdc/account/profile/1/invitations
 #	        projects: /gdc/account/profile/1/users
@@ -220,7 +220,7 @@
 #
 #   header: Add a user into the project
 #   (start example)
-#	POST https://secure.gooddata.com/gdc/projects/ProjectId/users
+#	POST /gdc/projects/<project>/users
 #	Request
 #	BODY: {"user": {"content": {"status": "ENABLED"}, "links": {"self":"/gdc/account/profile/2"} } }
 #	Response
@@ -229,7 +229,7 @@
 #
 #   header: Update project by users structure
 #   (start example)
-#	POST https://secure.gooddata.com/gdc/projects/ProjectId/users
+#	POST /gdc/projects/<project>/users
 #	Request
 #	BODY: {"users": [ {"user": {"content": {"status": "ENABLED"}, "links": {"self": "/gdc/account/profile/1"} } }, {"user": {"content": {"status": "ENABLED"}, "links": {"self": "/gdc/account/profile/2" } } } ] }
 #	Response

@@ -15,7 +15,7 @@
 # Group: Resource(s)
 #
 #   header: /gdc/account/profile
-#       creating a new profile by posting registration profile uri, not auth resource 
+#       creating a new profile by posting registration profile uri, not auth resource
 #
 #
 #       POST - <RegistrationProfile>
@@ -28,11 +28,11 @@
 #       - (400 Bad request) <WrongRegistration>
 #
 #   header: /gdc/account/domains/<domain>/users
-#       creating a new profile by posting AccountSetting, authenticated resource 
+#       creating a new profile by posting AccountSetting, authenticated resource
 #
 #       POST - <AccountSetting>
 #       - (403 Forbidden)
-#       - (400 Bad request)  
+#       - (400 Bad request) 
 #       - (201 Created) <Uri>    % an uri of newly created user in format /account/profile/$user
 #
 #   header: /gdc/account/domains/<domain>/users?offset=<offset>?limit=<limit>
@@ -41,33 +41,33 @@
 #       - (200 OK) AccountSettings
 #
 #   header: /gdc/account/profile/<user-id>
-#       get and modify accout information, auth resource 
-#  
-#     GET - * 
+#       get and modify accout information, auth resource
+# 
+#     GET - *
 #         - (200 Ok) <AccountSetting>
 #         - (404 Not found)
 #
-#     PUT - AccountSetting 
+#     PUT - AccountSetting
 #         - (200 Ok) <AccountSetting>
 #         - (403 Forbidden)
 #         - (404 Not found)
 #
-#     DELETE - * 
+#     DELETE - *
 #            - (204 No Content)
 #            - (403 Forbidden)
 #            - (404 Not found)
 #
 #   header: /gdc/account/profile/<user-id>/projects
 #       Shows projects assigned to account
-#  
-#       GET   
+# 
+#       GET  
 #           - (200 Ok) <Projects>
 #           - (404 Not found)  % user id not found
 #
 #   header: /gdc/account/profile/<user-id>/invitations
 #       Projects invitations for user
-#  
-#       GET 
+# 
+#       GET
 #           - (200 Ok) <Invitations>
 #           - (404 Not found) % User or invitation not found
 #
@@ -125,7 +125,7 @@
 #        (self : URISTRING)?,
 #        %ifdef OUT_ONLY
 #        (domain: URISTRING)?,         % domain where user belongs to %
-#        %endif 
+#        %endif
 #      })?
 #   }
 #
@@ -166,7 +166,7 @@
 #   header: InvitationProfile
 #
 #   (start code)
-#	InvitationProfile = < invitationProfile : {  
+#	InvitationProfile = < invitationProfile : { 
 #	       profile : {
 #		       login : EMAIL,
 #		       licence : INT,
@@ -181,7 +181,7 @@
 #		       (industry: STRING)?,
 #		       password : STRING[7+],
 #		       verifyPassword : STRING[7+]
-#		   },  
+#		   }, 
 #	       invitation : STRING[32,32]  % uniq string of invitation
 #	}>
 #   (end)
@@ -214,7 +214,7 @@
 #              self : URISTRING,
 #              profile : URISTRING
 #         }
-#         %endif 
+#         %endif
 #   }
 #   (end)
 ###############################################################################
@@ -236,8 +236,8 @@
 #	Response
 #	HEAD: 200 OK
 #	BODY:
-#	--- 
-#	accountSetting: 
+#	---
+#	accountSetting:
 #	  country: UK
 #	  firstName: Vulpes
 #	  lastName: Lagopus
@@ -246,14 +246,14 @@
 #	  timezone: 100
 #   (end)
 #
-#   (start example) 
+#   (start example)
 #	GET /gdc/account/login/876ec68f5630b38de65852ed5d6236ff
 #	Request
 #	Response
 #	HEAD: 404 Not Found
 #	BODY: Profile id 404 doesn't exist
 #   (end)
-#     
+#    
 #   header: update account setting.
 #   (start example)
 #	PUT /gdc/account/login/876ec68f5630b38de65852ed5d6236ff
@@ -261,8 +261,8 @@
 #	BODY: {"accountSetting":{"country":"UK","firstName":"Vulpes","timezone":"100","licence":1,"verifyPassword":"new_password","login":"my@email.com","password":"new_password","old_password":"old_password","lastName":"Lagopus","phoneNumber":"123456789"}}
 #	HEAD: 200 OK
 #	BODY:
-#	--- 
-#	accountSetting: 
+#	---
+#	accountSetting:
 #	  country: UK
 #	  firstName: Vulpes
 #	  lastName: Lagopus
@@ -285,22 +285,22 @@
 #	GET /gdc/account/profile/876ec68f5630b38de65852ed5d6236ff/projects
 #	Response
 #	HEAD: 200 OK
-#	BODY: 
-#	--- 
-#	projects: 
-#	  - 
-#	    project: 
-#	      content: 
+#	BODY:
+#	---
+#	projects:
+#	  -
+#	    project:
+#	      content:
 #	        state: ENABLED
-#	      links: 
+#	      links:
 #	        invitations: /gdc/projects/<project>/invitations
 #	        self: /gdc/projects/<project>
 #	        users: /gdc/projects/<project>/users
-#	      meta: 
-#	        author: 
+#	      meta:
+#	        author:
 #	          name: ~
 #	          uri: /gdc/account/profile/876ec68f5630b38de65852ed5d6236ff
-#	        contributor: 
+#	        contributor:
 #	          name: ~
 #	          uri: /gdc/account/profile
 #	        created: 2008-09-02 16:30:36
@@ -314,47 +314,47 @@
 #	GET /gdc/account/profile/2/invitations
 #	Response
 #	HEAD: 200 OK
-#	BODY: 
-#	--- 
-#	invitations: 
-#	  - 
-#	    invitation: 
-#	      content: 
+#	BODY:
+#	---
+#	invitations:
+#	  -
+#	    invitation:
+#	      content:
 #	        email: doe@example.com
 #	        firstname: ~
 #	        lastname: ~
 #	        phonenumber: ~
 #	        status: WAITING
-#	      links: 
+#	      links:
 #	        project: /gdc/projects/<project>
 #	        self: /gdc/projects/<project>/invitations/11
-#	      meta: 
-#	        author: 
+#	      meta:
+#	        author:
 #	          name: John Doe
 #	          uri: /gdc/account/profile/876ec68f5630b38de65852ed5d6236ff
-#	        contributor: 
+#	        contributor:
 #	          name: ~
 #	          uri: /gdc/account/profile
 #	        created: 2008-09-09 11:03:52
 #	        modified: 0000-00-00 00:00:00
 #	        summary: ~
 #	        title: ~
-#	  - 
-#	    invitation: 
-#	      content: 
+#	  -
+#	    invitation:
+#	      content:
 #	        email: doe2@example.com
 #	        firstname: ~
 #	        lastname: ~
 #	        phonenumber: ~
 #	        status: WAITING
-#	      links: 
+#	      links:
 #	        project: /gdc/projects/<project>
 #	        self: /gdc/projects/<project>/invitations/7
-#	      meta: 
-#	        author: 
+#	      meta:
+#	        author:
 #	          name: John Doe
 #	          uri: /gdc/account/profile/876ec68f5630b38de65852ed5d6236ff
-#	        contributor: 
+#	        contributor:
 #	          name: ~
 #	          uri: /gdc/account/profile
 #	        created: 2008-09-09 10:43:54
