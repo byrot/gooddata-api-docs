@@ -5,6 +5,8 @@ use feature 'switch';
 die 'Invalid file name given. Use with parameter "file.res"'
 	unless $ARGV[0] =~ m/^[\.\/\w\-_]+\.res$/;
 
+#print STDERR $ARGV[0].":\n";
+
 my $r = new Resource( $ARGV[0] );
 $r->read();
 $r->blueprint();
@@ -54,6 +56,15 @@ sub read {
 				when ( 'description' ) {
 					$self->set_group( 'null' ) and next
 						if is_separator( $l );
+
+					# Create links to related resources - should be blueprint function :(
+					if ( $l =~ m/^(#\s*- )(\/gdc\/.+)\s*$/ ) {
+						my $pr = $1;
+						my $rl = $2;
+						my $rr = $2;
+						$rl =~ s/[\/<>]//g;
+						$l = $pr . '[' . $rr . '](#' . $rl . ')';
+					}
 
 					$self->{description} .= trim( clean_code( $l ) ) . "\n";
 				}
