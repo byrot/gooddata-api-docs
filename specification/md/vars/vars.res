@@ -7,63 +7,84 @@
 ###############################################################################
 # Group: Description
 #
-#   Structures provided and requested on resource for mapping datasets/attrs.
+#   __Resource for project variable maintenance.__
 #
+#   Variables are objects that can be used to store numbers or specific
+#   attribute elements (values). The selection may be customized per user.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/obj
 #
 
 ###############################################################################
 # Group: Resource(s)
 #
-#   header: /md/<project>/variables
+#   header: /gdc/md/<project>/variables
 #  
-#     GET - -> <About>
-
-#   header: /md/<project>/variables/item
+#     GET - *
+#	-> 200 <About>
+#
+#   header: /gdc/md/<project>/variables/item
 #  
-#     GET - -> <About>
-#     POST Variable > URIResponse, 200 OK
-
-#   header: /md/<project>/variables/item/< id >
+#     GET - *
+#	-> 200 <About>
+#     POST Variable
+#	-> 200 URIResponse
+#
+#   header: /gdc/md/<project>/variables/item/<id>
 #  
-#     GET - -> <About>
-#     POST Variable > URIResponse, 200 OK	% update prompt answer / variable
-#     DELETE > 204 No Content % remove prompt answer / variable
-
-#   header: /md/<project>/variables/user
+#     GET - *
+#	-> 200 <About>
+#     POST Variable
+#	-> 200 URIResponse	% update prompt answer / variable
+#     DELETE
+#	-> 204 No Content % remove prompt answer / variable
+#
+#   header: /gdc/md/<project>/variables/user
 #  
-#     GET - -> <About>
-#     POST Variables -> URIResponse, 200 OK % level = user
-
-#   header: /md/<project>/variables/project
+#     GET - *
+#	-> 200 <About>
+#     POST Variables
+#	-> 200 URIResponse % level = user
+#
+#   header: /gdc/md/<project>/variables/project
 #  
-#     GET - -> <About>
-#     POST Variables -> URIResponse, 200 OK % level = project
-
-#   header: /md/<project>/variables/object
+#     GET - 
+#	-> 200 <About>
+#     POST Variables
+#	-> 200 URIResponse % level = project
+#
+#   header: /gdc/md/<project>/variables/object
 #  
-#     GET - -> <About>
-#     POST Variables -> URIResponse, 200 OK % level = object
-
-#   header: /md/<project>/variables/search
+#     GET - *
+#	-> 200 <About>
+#     POST Variables
+#	-> 200 URIResponse % level = object
+#
+#   header: /gdc/md/<project>/variables/search
 #  
-#     GET - -> <About>
-#     POST VariablesSearch > 200 OK, Variables
+#     GET - *
+#	-> <About>
+#     POST VariablesSearch
+#	-> 200 Variables
+#
 
 ###############################################################################
 # Group: Security Consideration
 #
-#   header: /md/<project>/variables/user
+#   header: /gdc/md/<project>/variables/user
 #     POST - canSetUserVariables
 #
-#   header: /md/<project>/variables/project
+#   header: /gdc/md/<project>/variables/project
 #     POST - canSetProjectVariables
 #
-#   header: /md/<project>/variables/item
+#   header: /gdc/md/<project>/variables/item
 #     POST - class type
 #     env.user - canSetUserVariables
 #     env.project - canSetProjectVariables
 #
-#   header: /md/<project>/variables/item/<id>
+#   header: /gdc/md/<project>/variables/item/<id>
 #     POST, DELETE - class type
 #     env.user - canSetUserVariables
 #     env.project - canSetProjectVariables
@@ -113,6 +134,24 @@
 #	   context : [ URISTRING ] % empty list means no restriction on context
 #	}>
 #
+#   (end)
+#
+
+################################################################################
+# Group: Mock-up
+#
+#   (start example)
+#	POST /gdc/md/<project>/variables/item
+#	BODY: {"variable":{"expression":"[/gdc/md/<project>/obj/951] IN ([/gdc/md/<project>/obj/951/elements?id=3])","level":"project","type":"filter","prompt":"/gdc/md/<project>/obj/3688","related":"/gdc/projects/<project>"}}
+#	Response
+#	HEAD: 200
+#   (end)
+#
+#   (start example)
+#	POST /gdc/md/<project>/variables/user
+#	BODY: {"variables":[{"expression":"[/gdc/md/<project>/obj/951] IN ([/gdc/md/<project>/obj/951/elements?id=9])","level":"user","related":"/gdc/account/profile/dfc4815","type":"filter","prompt":"/gdc/md/<project>/obj/3688"}]}
+#	Response
+#	HEAD: 200
 #   (end)
 #
 
