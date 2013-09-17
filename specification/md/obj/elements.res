@@ -7,10 +7,13 @@
 ###############################################################################
 # Group: Description
 #
-#   __THIS RESOURCE IS DEPRECATED__
 #
-#      For getting element and its display form for a specified attributeDisplayForm.
-#   You can request only some elements.
+#   Resource providing list of attribute elements.
+#
+#   __Related resources:__
+#
+#   - /gdc/md/<project>/obj
+#   - /gdc/md/<project>/obj/<id>/validElements
 #
 
 ###############################################################################
@@ -22,14 +25,14 @@
 #           POST - <ElementsDispFormReq>
 #		-> 200 <AttributeElements>
 #
-#   header: /gdc/md/<project>/obj/<ADFid>/elements?uris=LIST_OF_URIS&[order=asc|desc]
+#   header: /gdc/md/<project>/obj/<id>/elements?uris=LIST_OF_URIS&[order=asc|desc]
 #           LIST_OF_URIS /gdc/md/FoodMartDemo/obj/<AttrID>/elements?id=2006;/gdc/md/FoodMartDemo/obj/<AttrID>/elements?id=2007
 #						 DO NOT FORGET to escape URI parameters (uris=/gdc/md/FoodMartDemo/obj/71/elements%3Fid%3D2006;/gdc/md/FoodMartDemo/obj/71/elements%3Fid%3D2007)
 #
 #           GET - NULL
 #		-> 200 <AttributeElements>
 #
-#   header: /gdc/md/<project>/obj/<ADFid>/elements?id=INT
+#   header: /gdc/md/<project>/obj/<id>/elements?id=INT
 #
 #           GET - NULL
 #		-> 200 <AttributeElements>
@@ -83,22 +86,24 @@
 #   (end)
 
 ###############################################################################
-# Group: Example
+# Group: Mock-up
 #
 #   (start example)
-#   GET http://localhost/gdc/md/FoodMartDemo/obj/139/elements?uris=/gdc/md/FoodMartDemo/obj/71/elements?id=2006;/gdc/md/FoodMartDemo/obj/71/elements?id=2007
-#
-#   --- 
-#   attributeElements: 
-#     attribute: /gdc/md/FoodMartDemo/obj/71
-#     attributeDisplayForm: /gdc/md/FoodMartDemo/obj/139
-#     elements: 
-#       - 
-#         title: 2006
-#         uri: /gdc/md/FoodMartDemo/obj/71/elements?id=2006
-#       - 
-#         title: 2007
-#         uri: /gdc/md/FoodMartDemo/obj/71/elements?id=2007
+#	GET /gdc/md/<project>/obj/139/elements?uris=/gdc/md/<project>/obj/71/elements?id=2006;/gdc/md/<project>/obj/71/elements?id=2007
+#	Response
+#	HEAD: 200
+#	BODY:
+#	---
+#	attributeElements:
+#	  attribute: /gdc/md/FoodMartDemo/obj/71
+#	  attributeDisplayForm: /gdc/md/FoodMartDemo/obj/139
+#	  elements:
+#	    -
+#	      title: 2006
+#	      uri: /gdc/md/FoodMartDemo/obj/71/elements?id=2006
+#	    -
+#	      title: 2007
+#	      uri: /gdc/md/FoodMartDemo/obj/71/elements?id=2007
 #   (end)
 #   71 is attribute, 139 is attribute display form of this attribute.
 

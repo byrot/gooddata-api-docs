@@ -16,6 +16,8 @@
 #   __Related resources:__
 #
 #   - /gdc/md/<project>
+#   - /gdc/md/<project>/obj/elements
+#   - /gdc/md/<project>/obj/explain2
 #   - /gdc/md/<project>/query
 #   - /gdc/md/<project>/dashboard
 #   - /gdc/md/<project>/favorite
