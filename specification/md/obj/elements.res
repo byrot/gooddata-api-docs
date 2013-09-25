@@ -32,7 +32,7 @@
 #           GET - NULL
 #		-> 200 <AttributeElements>
 #
-#   header: /gdc/md/<project>/obj/<id>/elements?id=INT
+#   header: /gdc/md/<project>/obj/<id>/elements?id=<element-id>
 #
 #           GET - NULL
 #		-> 200 <AttributeElements>
