@@ -1,20 +1,72 @@
 use strict;
 use warnings;
 use feature 'switch';
+use JSON;
 
-die 'Invalid file name given. Use with parameter "file.res"'
-	unless $ARGV[0] =~ m/^[\.\/\w\-_]+\.res$/;
+# Usage: res2blue.pl config.json file.res [, file2.res [, ... ] ]
 
-#print STDERR $ARGV[0].":\n";
+my @files = @ARGV;
+my $conffile = shift @files;
 
-my $r = new Resource( $ARGV[0] );
+die 'Invalid file name given. Use with parameter "config.json"'
+	unless $conffile =~ m/^[\.\/\w\-_]+\.json$/;
+
+my $c = new Configuration( $conffile );
+use Data::Dumper;print Dumper $c;
+
+
+my $r = new Resource( $c, @files );
 $r->read();
 $r->blueprint();
 
 
 ###############################################################################
+package Configuration;
+
+use Class::MethodMaker [
+	scalar => qw/data/,
+	hash   => qw/resources/,
+];
+
+sub new {
+	my ( $class, $conffile ) = @_;
+
+	$conffile or die 'Config file name not given.';
+
+	my $self = bless {}, $class;
+	$self->load_conffile( $conffile );
+
+	return $self;
+}
+
+sub load_conffile {
+	my ( $self, $conffile ) = @_;
+
+	open FILE, '<', $conffile or die $!;
+	local $/;
+
+	my $json = JSON->new;
+	$self->data( $json->decode( <FILE> ) );
+	close FILE;
+
+	for my $p ( @{ $self->data->{parts} } ) {
+		print "PART ".$p->{name}."\n";
+		for my $c ( @{ $p->{chapters} } ) {
+			print "CHAPTER ".$c->{name}."\n";
+			for my $u ( @{ $c->{resources} } ) {
+				my $a = $self->resources->{ $u };
+				$a = [] unless ref $a eq 'ARRAY';
+				push @$a, $c;
+				$self->resources_set( $u, $a );
+			}
+		}
+	}
+
+	return 1;
+}
+
+###############################################################################
 package Resource;
-use JSON;
 
 sub new {
 	my ( $class, $filename ) = @_;

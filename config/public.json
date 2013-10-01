@@ -1,0 +1,28 @@
+{
+	"parts": [
+		{
+			"name": "GoodData API Documentation",
+			"description": "GoodData API is based on REST principles, all you need to use it is your GoodData account. You have to be authenticated and call the simple HTTPs request on the URL specified below. The following documentation covers core resources that are used to manipulate with the main entities. First of all, read basic instructions to start using the API.",
+			"chapters": [
+				{
+					"name": "Login",
+					"description": "To login into the GoodData API.",
+					"resources": [
+						"/gdc/account/login",
+						"/gdc/account/profile/<user-id>",
+						"/gdc/account/token",
+						"/gdc/account/login/<user-id>"
+					]
+				},
+				{
+					"name": "User",
+					"description": "Users API.",
+					"resources": [
+						"/gdc/account/profile/<user-id>",
+						"/gdc/account/login/<user-id>"
+					]
+				}
+			]
+		}
+	]
+}
